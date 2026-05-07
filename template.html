@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iWaTaLi Papua - Yayasan Pengembangan Perdamaian</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0F4C81', // Blue Professional
+                        secondary: '#F59E0B', // Gold/Orange accents
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        html { scroll-behavior: smooth; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+        .bg-grid-pattern {
+            background-image:
+                linear-gradient(to right, rgba(15, 76, 129, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 76, 129, 0.12) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        a[href], button, [role="button"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 overflow-x-hidden" x-data="{ showDisclaimer: true }">
+
+    <nav x-data="{ mobileMenuOpen: false, scrolled: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 20) ? true : false"
+         :class="scrolled ? 'glass shadow-md py-3' : 'bg-transparent py-5'"
+         class="fixed w-full z-50 transition-all duration-300 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="images/logo-iwatali-papua.png" alt="Logo iWaTaLi Papua" class="w-10 h-10 object-contain">
+                <span :class="scrolled ? 'text-primary' : 'text-primary'" class="font-extrabold text-xl tracking-tight">iWaTaLi Papua</span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#beranda" class="hover:text-primary transition">Beranda</a>
+                <a href="#tentang" class="hover:text-primary transition">Tentang Kami</a>
+                <a href="#blog" class="hover:text-primary transition">Blog</a>
+                <a href="#struktur" class="hover:text-primary transition">Visi & Kontak</a>
+                <a href="#cta-siap-menjadi" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition shadow-lg">Kolaborasi Sekarang</a>
+            </div>
+
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-2xl text-primary">
+                <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <div x-show="mobileMenuOpen" x-cloak class="md:hidden absolute top-full left-0 w-full bg-white border-t p-6 space-y-4 shadow-xl">
+            <a href="#beranda" @click="mobileMenuOpen = false" class="block font-medium">Beranda</a>
+            <a href="#tentang" @click="mobileMenuOpen = false" class="block font-medium">Tentang Kami</a>
+            <a href="#blog" @click="mobileMenuOpen = false" class="block font-medium">Blog</a>
+            <a href="#struktur" @click="mobileMenuOpen = false" class="block font-medium">Visi & Kontak</a>
+            <a href="#cta-siap-menjadi" @click="mobileMenuOpen = false" class="block bg-primary text-white text-center py-3 rounded-xl">Kolaborasi Sekarang</a>
+        </div>
+    </nav>
+    <div x-show="showDisclaimer" x-cloak class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm" @click="showDisclaimer = false"></div>
+        <div class="relative z-10 w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border border-slate-200">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-primary flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-circle-info text-xl"></i>
+                </div>
+                <div>
+                    <img src="/images/logo-nokensoft.png" alt="Logo Nokensoft" class="h-10 w-auto object-contain mb-4">
+                    <h3 class="text-2xl font-extrabold mb-3">Disclaimer Prototype</h3>
+                    <p class="text-slate-600 leading-relaxed">Desain ini merupakan prototype usulan berdasarkan analisa oleh tim <a href="https://www.nokensoft.com" target="_blank" class="font-semibold text-primary hover:underline">www.nokensoft.com</a>. Seluruh data dan informasi pada halaman ini disusun menggunakan metode pencarian di media sosial dan internet dengan bantuan AI.</p>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:justify-end">
+                <a href="./__analisa/008_Penawaran_iWaTaLi_Papua_Nokensoft_v1_0.pdf" download class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-file-pdf text-rose-600"></i> Download Audit & Penawaran PDF
+                </a>
+                <a href="https://wa.me/6282199558191" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Kontak PIC Tim Nokensoft
+                </a>
+                <button @click="showDisclaimer = false" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition">
+                    Saya Mengerti
+                </button>
+            </div>
+        </div>
+    </div>
+    <section id="beranda" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/gallery/galeri1.png" class="w-full h-full object-cover scale-105" alt="Hero Background">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+            <div x-data="{ shown: false }" x-init="setTimeout(() => shown = true, 100)"
+                 x-show="shown" x-transition:enter="transition ease-out duration-1000"
+                 x-transition:enter-start="opacity-0 translate-y-10"
+                 x-transition:enter-end="opacity-100 translate-y-0">
+                <span class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold mb-6 tracking-wide uppercase">LSM Mitra Gereja di Tanah Papua</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6 text-slate-900">
+                    Membangun <span class="text-primary">Perdamaian</span> dan Pemberdayaan Papua.
+                </h1>
+                <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+                    Yayasan iWaTaLi Papua didirikan di Sentani pada 27 Juli 2017 untuk memperkuat pelayanan sosial berbasis iman Kristen, memberdayakan masyarakat, dan membangun perdamaian lintas budaya.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#tentang" class="px-8 py-4 bg-primary text-white rounded-2xl font-bold shadow-2xl shadow-blue-200 hover:-translate-y-1 transition">Pelajari Lebih Lanjut</a>
+                    <a href="https://instagram.com/iwatalipapua" class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition flex items-center gap-2">
+                        <i class="fa-brands fa-instagram text-pink-500"></i> Ikuti Kami
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hidden md:block relative">
+                <div class="bg-white p-8 rounded-[2rem] shadow-2xl relative z-10 border border-slate-100">
+                    <div class="flex justify-center mb-6 pb-6 border-b border-slate-100">
+                        <img src="images/logo-iwatali-papua.png" alt="Logo utama iWaTaLi Papua" class="h-40 w-auto object-contain">
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-primary mb-1">2017</p>
+                            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Tahun Berdiri</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-primary mb-1">Sentani</p>
+                            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Pusat Operasional</p>
+                        </div>
+                        <div class="text-center col-span-2 border-t pt-6">
+                            <p class="text-4xl font-extrabold text-secondary mb-1">Yahukimo+</p>
+                            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Jangkauan Program</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+    <section id="blog" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <div>
+                    <span class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold tracking-wide uppercase">Blog iWaTaLi Papua</span>
+                    <h2 class="text-4xl font-extrabold mt-4 mb-4">Postingan Terbaru</h2>
+                    <p class="text-slate-600 max-w-2xl">Ikuti kabar terbaru seputar kegiatan pengembangan perdamaian, pemberdayaan masyarakat, dan pelayanan sosial iWaTaLi Papua.</p>
+                </div>
+                <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition">
+                    Lihat Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <article class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow duration-300">
+                    <img src="images/gallery/galeri1.png" alt="Pelatihan pemuda dan remaja Papua" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-3">Pelatihan Pemuda & Remaja sebagai Agen Perubahan</h3>
+                        <p class="text-sm text-slate-600 mb-5 leading-relaxed">Program pembinaan generasi muda Papua untuk memperkuat kepemimpinan komunitas, keterampilan sosial, dan semangat pelayanan damai.</p>
+                        <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition">
+                            Lihat Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow duration-300">
+                    <img src="images/gallery/galeri2.png" alt="Pendampingan lembaga dan pimpinan gereja" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-3">Penguatan Lembaga & Pimpinan Gereja</h3>
+                        <p class="text-sm text-slate-600 mb-5 leading-relaxed">Pendampingan gereja-gereja di Tanah Papua agar pelayanan sosial berbasis iman Kristen berjalan lebih terstruktur dan berdampak luas.</p>
+                        <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition">
+                            Lihat Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow duration-300">
+                    <img src="images/gallery/galeri3.png" alt="Advokasi HAM dan perlindungan masyarakat Papua" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-3">Advokasi HAM hingga Wilayah Terpencil Papua</h3>
+                        <p class="text-sm text-slate-600 mb-5 leading-relaxed">iWaTaLi mendorong pemuda dan komunitas menjadi garda terdepan perlindungan hak asasi manusia, termasuk di wilayah Yahukimo.</p>
+                        <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition">
+                            Lihat Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow duration-300">
+                    <img src="images/gallery/galeri4.png" alt="Kampanye lingkungan hidup komunitas muda" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-3">Sa Sayang Bumi: Gerakan Peduli Lingkungan</h3>
+                        <p class="text-sm text-slate-600 mb-5 leading-relaxed">Kampanye lingkungan yang berawal dari aksi kebersihan pantai di Jayapura kini berkembang menjadi pendidikan lingkungan di sekolah-sekolah.</p>
+                        <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition">
+                            Lihat Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-primary md:hidden">
+        <div class="px-6 grid grid-cols-2 gap-8 text-white text-center">
+            <div>
+                <p class="text-3xl font-bold">2017</p>
+                <p class="text-xs opacity-80 uppercase">Berdiri</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold">Sentani</p>
+                <p class="text-xs opacity-80 uppercase">Pusat</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang" class="relative py-24 px-6 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
+        <div class="absolute -top-28 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <img src="images/gallery/tentang1.png" class="rounded-[3rem] shadow-2xl" alt="Tentang iWaTaLi Papua">
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-4xl font-extrabold mb-6">Tentang <span class="text-primary">iWaTaLi Papua</span></h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        Yayasan iWaTaLi Papua adalah LSM/NGO yang didirikan di Sentani, Kabupaten Jayapura pada 27 Juli 2017. Nama iWaTaLi berasal dari ucapan salam damai atau terima kasih dalam berbagai bahasa daerah Papua, mencerminkan semangat kebersamaan lintas budaya.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary shrink-0">
+                                <i class="fa-solid fa-handshake-angle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Visi & Misi</h4>
+                                <p class="text-sm text-slate-500">Meningkatkan kapasitas SDM Papua melalui pendidikan dan pelatihan, serta memberdayakan masyarakat agar mandiri dan sejahtera.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-secondary shrink-0">
+                                <i class="fa-solid fa-users-gear text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Kemitraan Sipil & Pemerintah</h4>
+                                <p class="text-sm text-slate-500">Membangun kerja sama antara lembaga masyarakat sipil dan pemerintah demi pengembangan perdamaian di Papua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="struktur" class="py-24 bg-slate-100 px-6">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-extrabold mb-4">Wilayah Kerja & Kontak</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto">Sentani dan Jayapura sebagai pusat operasional, dengan jangkauan program hingga wilayah terpencil Papua termasuk Kabupaten Yahukimo dan sekitarnya.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <a href="https://iwatalipapua.org" target="_blank" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20">
+                <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Website Resmi</h3>
+                <p class="text-slate-500 mb-4 text-sm">Informasi kegiatan, profil yayasan, dan dokumentasi program iWaTaLi Papua.</p>
+                <span class="text-primary font-bold inline-flex items-center gap-2">
+                    Kunjungi Website <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </a>
+            <a href="https://instagram.com/iwatalipapua" target="_blank" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20">
+                <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-secondary text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Instagram Resmi</h3>
+                <p class="text-slate-500 mb-4 text-sm">Ikuti aktivitas pemuda, gereja, dan komunitas dalam program perdamaian serta pemberdayaan.</p>
+                <span class="text-primary font-bold inline-flex items-center gap-2">
+                    Buka Instagram <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </a>
+            <a href="https://maps.google.com/?q=Sentani+Kabupaten+Jayapura+Papua" target="_blank" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20">
+                <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-700 text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Lokasi Operasional</h3>
+                <p class="text-slate-500 mb-4 text-sm">Sentani, Kabupaten Jayapura, Papua sebagai basis kerja pelayanan dan pemberdayaan iWaTaLi.</p>
+                <span class="text-primary font-bold inline-flex items-center gap-2">
+                    Lihat Lokasi <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </a>
+        </div>
+    </section>
+    <section id="galeri-kegiatan" class="py-24 px-6 bg-white" x-data="{
+        open: false,
+        selected: null,
+        copied: false,
+        items: [
+            {
+                image: 'images/gallery/galeri1.png',
+                label: 'Pemuda & Remaja',
+                title: 'Pembinaan Pemuda Papua sebagai Agen Perubahan',
+                caption: 'Pelatihan dan pendampingan generasi muda untuk memperkuat kapasitas kepemimpinan, kolaborasi komunitas, dan budaya damai.'
+            },
+            {
+                image: 'images/gallery/galeri2.png',
+                label: 'Lembaga & Gereja',
+                title: 'Penguatan Lembaga dan Pimpinan Gereja',
+                caption: 'Pendampingan gereja-gereja di Tanah Papua dalam pelayanan sosial berbasis iman Kristen yang relevan dengan kebutuhan masyarakat.'
+            },
+            {
+                image: 'images/gallery/galeri3.png',
+                label: 'Ekonomi Kerakyatan',
+                title: 'Mobilisasi Gereja dan Masyarakat (MGM)',
+                caption: 'Program pemberdayaan ekonomi komunitas lokal untuk mendorong kemandirian dan kesejahteraan masyarakat Papua.'
+            },
+            {
+                image: 'images/gallery/galeri4.png',
+                label: 'Advokasi HAM',
+                title: 'Perlindungan Masyarakat hingga Yahukimo',
+                caption: 'Advokasi hak asasi manusia dengan melibatkan pemuda dan komunitas sebagai garda terdepan perlindungan masyarakat.'
+            },
+            {
+                image: 'images/gallery/galeri5.png',
+                label: 'Sa Sayang Bumi',
+                title: 'Kampanye Lingkungan Hidup Berbasis Sekolah',
+                caption: 'Gerakan lingkungan dari aksi kebersihan pantai di Jayapura hingga edukasi berkelanjutan di sekolah-sekolah.'
+            }
+        ],
+        openModal(item) {
+            this.selected = item;
+            this.open = true;
+        },
+        closeModal() {
+            this.open = false;
+        },
+        shareTo(platform) {
+            if (!this.selected) return;
+            const pageUrl = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`${this.selected.title} - ${this.selected.caption}`);
+            let shareUrl = '';
+            if (platform === 'whatsapp') {
+                shareUrl = `https://wa.me/?text=${text}%20${pageUrl}`;
+            } else if (platform === 'facebook') {
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+            } else if (platform === 'x') {
+                shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${pageUrl}`;
+            } else if (platform === 'telegram') {
+                shareUrl = `https://t.me/share/url?url=${pageUrl}&text=${text}`;
+            }
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'noopener,noreferrer');
+            }
+        },
+        copyLink() {
+            const url = window.location.href;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url);
+            } else {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = url;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+            }
+            this.copied = true;
+            setTimeout(() => {
+                this.copied = false;
+            }, 1600);
+        }
+    }">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 text-center">
+                <span class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold tracking-wide uppercase">Dokumentasi Program</span>
+                <h2 class="text-4xl font-extrabold mt-4 mb-4">Galeri Kegiatan</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto">Lihat momen kolaborasi dan aksi nyata iWaTaLi Papua dalam pengembangan perdamaian dan pemberdayaan masyarakat.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+                <template x-for="(item, index) in items" :key="index">
+                    <article class="relative cursor-pointer" x-data="{ hover: false, mx: 0, my: 0, track(event) { const rect = this.$el.getBoundingClientRect(); this.mx = event.clientX - rect.left; this.my = event.clientY - rect.top; } }"
+                        @mouseenter="hover = true"
+                        @mouseleave="hover = false"
+                        @mousemove="track($event)"
+                        @click="openModal(item)">
+                        <div class="aspect-[4/5] overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-100">
+                            <img :src="item.image" :alt="item.title" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <p class="mt-3 text-sm font-semibold text-slate-800 leading-snug" x-text="item.title"></p>
+                        <div x-show="hover"
+                            x-transition.opacity.duration.150ms
+                            class="pointer-events-none absolute z-20 px-3 py-1.5 bg-slate-900 text-white text-xs font-semibold rounded-lg whitespace-nowrap shadow-xl"
+                            :style="`left:${mx}px; top:${my}px; transform: translate(-50%, calc(-100% - 12px));`"
+                            x-text="item.label"></div>
+                    </article>
+                </template>
+            </div>
+            <div class="mt-10 text-center">
+                <a href="#" class="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition shadow-lg">
+                    Tampilkan Selengkapnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+        <div x-show="open" x-cloak @keydown.escape.window="closeModal()" class="fixed inset-0 z-[9998] flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm" @click="closeModal()"></div>
+            <div class="relative z-10 w-full max-w-4xl bg-white rounded-3xl p-4 md:p-6 shadow-2xl">
+                <button @click="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition" aria-label="Tutup modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="grid md:grid-cols-2 gap-6 items-start">
+                    <div class="overflow-hidden rounded-2xl bg-slate-100">
+                        <img :src="selected ? selected.image : ''" :alt="selected ? selected.title : 'Galeri kegiatan'" class="w-full aspect-[4/5] object-cover">
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6">
+                        <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-3">Galeri Kegiatan</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900 mb-4" x-text="selected ? selected.title : ''"></h3>
+                        <p class="text-slate-600 leading-relaxed" x-text="selected ? selected.caption : ''"></p>
+                        <div class="mt-6 pt-5 border-t border-slate-200">
+                            <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-3">Bagikan ke Media Sosial</p>
+                            <div class="flex flex-wrap gap-2">
+                                <button @click="shareTo('whatsapp')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-50 text-emerald-700 text-sm font-semibold hover:bg-emerald-100 transition">
+                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                                </button>
+                                <button @click="shareTo('facebook')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-50 text-blue-700 text-sm font-semibold hover:bg-blue-100 transition">
+                                    <i class="fa-brands fa-facebook-f"></i> Facebook
+                                </button>
+                                <button @click="shareTo('x')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 text-slate-800 text-sm font-semibold hover:bg-slate-200 transition">
+                                    <i class="fa-brands fa-x-twitter"></i> X
+                                </button>
+                                <button @click="shareTo('telegram')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-cyan-50 text-cyan-700 text-sm font-semibold hover:bg-cyan-100 transition">
+                                    <i class="fa-brands fa-telegram"></i> Telegram
+                                </button>
+                                <button @click="copyLink()" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 text-primary text-sm font-semibold hover:bg-primary/20 transition">
+                                    <i class="fa-solid fa-link"></i> Salin Link
+                                </button>
+                            </div>
+                            <p x-show="copied" x-transition.opacity.duration.200ms class="mt-3 text-xs font-semibold text-emerald-600">Link berhasil disalin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="peta-sebaran" class="py-20 px-6 bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold tracking-wide uppercase">Sebaran Program Papua</span>
+                <h2 class="text-4xl font-extrabold mt-4 mb-4">Contoh Sebaran Kegiatan iWaTaLi Papua</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto">Visualisasi contoh titik kegiatan dari Sentani dan Jayapura hingga wilayah terpencil seperti Yahukimo berbasis Leaflet JS dan OpenStreetMap.</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2">
+                    <div id="dpcMap" class="w-full h-[520px] rounded-3xl border border-slate-200 shadow-xl"></div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold mb-4">Ringkasan Sebaran</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl bg-blue-50 border border-blue-100">
+                            <p class="text-xs uppercase tracking-widest text-blue-600 font-bold mb-1">Pusat Operasional</p>
+                            <p class="text-3xl font-extrabold text-primary">Sentani</p>
+                            <p class="text-sm text-slate-600">Koordinasi program dari Sentani dan Jayapura.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50 border border-orange-100">
+                            <p class="text-xs uppercase tracking-widest text-orange-600 font-bold mb-1">Jangkauan Program</p>
+                            <p class="text-3xl font-extrabold text-secondary">Yahukimo+</p>
+                            <p class="text-sm text-slate-600">Termasuk wilayah terpencil Papua dan sekitarnya.</p>
+                        </div>
+                        <p class="text-sm text-slate-500 leading-relaxed">Klik marker untuk melihat label contoh lokasi kegiatan. Data marker pada peta ini merupakan visualisasi sebaran program.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cta-siap-menjadi" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto relative overflow-hidden bg-primary rounded-[3rem] p-12 md:p-20 text-center">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Siap Berkolaborasi untuk <br class="hidden md:block"> Perdamaian Papua?</h2>
+                <p class="text-blue-100 mb-10 max-w-xl mx-auto text-lg">Mari bergandengan tangan memperkuat kapasitas masyarakat, gereja, dan generasi muda Papua melalui program iWaTaLi.</p>
+                <a href="https://iwatalipapua.org" class="bg-white text-primary px-10 py-4 rounded-2xl font-extrabold hover:bg-secondary hover:text-white transition-all shadow-2xl">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-white pt-20 pb-10 px-6 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="images/logo-iwatali-papua.png" alt="Logo iWaTaLi Papua" class="w-8 h-8 object-contain">
+                        <span class="font-bold text-xl tracking-tight">iWaTaLi Papua</span>
+                    </div>
+                    <p class="text-slate-500 max-w-sm mb-6">Yayasan iWaTaLi Papua adalah LSM/NGO di bidang sosial yang fokus pada pengembangan perdamaian, pemberdayaan masyarakat, dan pelayanan berbasis iman Kristen di Tanah Papua.</p>
+                    <div class="flex gap-4">
+                        <a href="https://instagram.com/iwatalipapua" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://iwatalipapua.org" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition"><i class="fa-solid fa-globe"></i></a>
+                        <a href="https://maps.google.com/?q=Sentani+Kabupaten+Jayapura+Papua" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition"><i class="fa-solid fa-location-dot"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-6 uppercase tracking-widest text-xs text-slate-400">Tautan Cepat</h5>
+                    <ul class="space-y-4 font-medium">
+                        <li><a href="#tentang" class="text-slate-600 hover:text-primary transition">Tentang Kami</a></li>
+                        <li><a href="#blog" class="text-slate-600 hover:text-primary transition">Blog</a></li>
+                        <li><a href="#galeri-kegiatan" class="text-slate-600 hover:text-primary transition">Galeri Kegiatan</a></li>
+                        <li><a href="#kontak" class="text-slate-600 hover:text-primary transition">Kontak</a></li>
+                    </ul>
+                </div>
+                <div id="kontak">
+                    <h5 class="font-bold mb-6 uppercase tracking-widest text-xs text-slate-400">Kantor Pusat</h5>
+                    <p class="text-slate-600 font-medium leading-relaxed">
+                        Sentani, Kabupaten Jayapura<br>
+                        Papua
+                    </p>
+                    <p class="mt-4 text-slate-600 font-medium underline">iwatalipapua.org</p>
+                    <p class="mt-2 text-slate-600 font-medium">@iwatalipapua</p>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 pt-10 text-center">
+                <p class="text-slate-400 text-sm">© 2026 Yayasan iWaTaLi Papua. All rights reserved.</p>
+                <p class="text-slate-400 text-sm mt-2">Powered by <a href="https://nokensoft.com" target="_blank" class="font-semibold hover:text-primary transition">Nokensoft.com</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mapContainer = document.getElementById('dpcMap');
+            if (!mapContainer || typeof L === 'undefined') return;
+            const map = L.map('dpcMap', { scrollWheelZoom: false }).setView([-3.8, 138.5], 6);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            const baseRegions = [
+                { name: 'Sentani', lat: -2.57, lng: 140.52 },
+                { name: 'Jayapura', lat: -2.54, lng: 140.71 },
+                { name: 'Keerom', lat: -3.35, lng: 140.67 },
+                { name: 'Yahukimo', lat: -4.09, lng: 139.00 },
+                { name: 'Wamena', lat: -4.10, lng: 138.95 },
+                { name: 'Nabire', lat: -3.36, lng: 135.50 },
+                { name: 'Merauke', lat: -8.49, lng: 140.40 }
+            ];
+            const offsets = [
+                { lat: 0.00, lng: 0.00 },
+                { lat: 0.10, lng: 0.14 },
+                { lat: -0.09, lng: 0.08 },
+                { lat: 0.07, lng: -0.12 }
+            ];
+            const programPoints = [];
+            baseRegions.forEach(function (region) {
+                offsets.forEach(function (offset, index) {
+                    programPoints.push({
+                        name: `Program ${region.name} ${index + 1}`,
+                        lat: region.lat + offset.lat,
+                        lng: region.lng + offset.lng
+                    });
+                });
+            });
+            programPoints.forEach(function (point) {
+                L.circleMarker([point.lat, point.lng], {
+                    radius: 6,
+                    color: '#0F4C81',
+                    weight: 2,
+                    fillColor: '#0F4C81',
+                    fillOpacity: 0.72
+                }).addTo(map).bindPopup(`<strong>${point.name}</strong><br>Contoh titik program iWaTaLi Papua`);
+            });
+            const bounds = L.latLngBounds(programPoints.map(function (point) {
+                return [point.lat, point.lng];
+            }));
+            map.fitBounds(bounds.pad(0.2));
+        });
+    </script>
+
+</body>
+</html>
