@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags Utama -->
+    <title>Yayasan Ekologi Sahul Lestari (YESL) - Profil Lembaga</title>
+    <meta name="description"
+        content="Yayasan Ekologi Sahul Lestari (YESL) berkomitmen dalam pelestarian lingkungan, konservasi ekologi, dan pemberdayaan komunitas lokal di wilayah Sahul demi masa depan yang berkelanjutan.">
+    <meta name="keywords"
+        content="Yayasan Ekologi Sahul Lestari, YESL, konservasi lingkungan, ekologi sahul, pelestarian alam, pemberdayaan komunitas, donasi lingkungan, Papua">
+    <meta name="author" content="Yayasan Ekologi Sahul Lestari">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yesl.or.id/"> <!-- Ganti dengan URL domain asli Anda jika sudah online -->
+
+    <!-- Favicon (Menggunakan logo yang sama dengan navigasi) -->
+    <link rel="icon" type="image/png" href="images/logo-yesl.png">
+    <link rel="apple-touch-icon" href="images/logo-yesl.png">
+
+    <!-- Open Graph Meta Tags (Untuk Optimasi Share di WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yesl.or.id/"> <!-- Ganti dengan URL domain asli -->
+    <meta property="og:title" content="Yayasan Ekologi Sahul Lestari (YESL) - Profil Lembaga">
+    <meta property="og:description"
+        content="Bergabunglah bersama kami dalam upaya pelestarian ekologi dan pemberdayaan komunitas berkelanjutan di wilayah Sahul. Hubungi kami untuk kolaborasi.">
+    <meta property="og:image" content="images/logo-yesl.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.yesl.or.id/">
+    <meta name="twitter:title" content="Yayasan Ekologi Sahul Lestari (YESL) - Profil Lembaga">
+    <meta name="twitter:description"
+        content="Bergabunglah bersama kami dalam upaya pelestarian ekologi dan pemberdayaan komunitas berkelanjutan di wilayah Sahul.">
+    <meta name="twitter:image" content="images/logo-yesl.png">
+
+    <!-- Fonts & Icons Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <!-- Framework Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0F4C81', // Blue Professional
+                        secondary: '#F59E0B', // Gold/Orange accents
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Utilities Styles -->
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .bg-grid-pattern {
+            background-image:
+                linear-gradient(to right, rgba(15, 76, 129, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 76, 129, 0.12) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        a[href],
+        button,
+        [role="button"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-slate-50 text-slate-900 overflow-x-hidden" x-data="{ showDisclaimer: true }">
+
+    <nav x-data="{ mobileMenuOpen: false, scrolled: false }"
+        @scroll.window="scrolled = (window.pageYOffset > 20) ? true : false"
+        :class="scrolled ? 'glass shadow-md py-3' : 'bg-transparent py-5'"
+        class="fixed w-full z-50 transition-all duration-300 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+
+            <!-- Logo & Judul Website -->
+            <div class="flex items-center gap-3">
+                <img src="images/logo-yesl.png" alt="Logo YESL" class="w-10 h-10 object-contain">
+                <div class="flex flex-col">
+                    <span :class="scrolled ? 'text-primary' : 'text-primary'"
+                        class="font-extrabold text-xl tracking-tight leading-none">YESL</span>
+                    <span
+                        class="text-[10px] font-semibold text-gray-500 tracking-wide uppercase hidden sm:block mt-0.5">Yayasan
+                        Ekologi Sahul Lestari</span>
+                </div>
+            </div>
+
+            <!-- Navigasi Desktop -->
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#beranda" class="hover:text-primary transition">Beranda</a>
+                <a href="#tentang" class="hover:text-primary transition">Tentang Kami</a>
+                <a href="#blog" class="hover:text-primary transition">Program Prioritas</a>
+                <a href="#struktur" class="hover:text-primary transition">Visi & Kontak</a>
+                <!-- Donasi sebagai link biasa -->
+                <a href="#donasi" class="hover:text-primary transition">Donasi</a>
+
+                <!-- Tombol Aksi Utama -->
+                <a href="#cta-siap-menjadi"
+                    class="bg-primary text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition shadow-lg">Hubungi
+                    Kami</a>
+            </div>
+
+            <!-- Tombol Mobile Menu -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen"
+                class="md:hidden text-2xl text-primary focus:outline-none">
+                <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <!-- Navigasi Mobile (Responsive) -->
+        <div x-show="mobileMenuOpen" x-cloak @click.away="mobileMenuOpen = false"
+            class="md:hidden absolute top-full left-0 w-full bg-white border-t p-6 space-y-4 shadow-xl transition-all">
+            <a href="#beranda" @click="mobileMenuOpen = false"
+                class="block font-medium hover:text-primary py-1">Beranda</a>
+            <a href="#tentang" @click="mobileMenuOpen = false" class="block font-medium hover:text-primary py-1">Tentang
+                Kami</a>
+            <a href="#blog" @click="mobileMenuOpen = false" class="block font-medium hover:text-primary py-1">Program
+                Prioritas</a>
+            <a href="#struktur" @click="mobileMenuOpen = false" class="block font-medium hover:text-primary py-1">Visi &
+                Kontak</a>
+            <!-- Donasi di mobile menu -->
+            <a href="#donasi" @click="mobileMenuOpen = false"
+                class="block font-medium hover:text-primary py-1">Donasi</a>
+
+            <div class="pt-2">
+                <a href="#cta-siap-menjadi" @click="mobileMenuOpen = false"
+                    class="block bg-primary text-white text-center py-2.5 rounded-xl font-medium hover:bg-opacity-90 transition">Hubungi
+                    Kami</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div x-show="showDisclaimer" x-cloak class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm" @click="showDisclaimer = false"></div>
+        <div class="relative z-10 w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border border-slate-200">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-primary flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-circle-info text-xl"></i>
+                </div>
+                <div>
+                    <img src="/images/logo-nokensoft.png" alt="Logo Nokensoft" class="h-10 w-auto object-contain mb-4">
+                    <h3 class="text-2xl font-extrabold mb-3">Disclaimer Prototype</h3>
+                    <p class="text-slate-600 leading-relaxed">Desain ini merupakan prototype usulan berdasarkan analisa
+                        oleh tim <a href="https://www.nokensoft.com" target="_blank"
+                            class="font-semibold text-primary hover:underline">www.nokensoft.com</a>. Seluruh data dan
+                        informasi pada halaman ini disusun menggunakan metode pencarian di media sosial dan internet
+                        dengan bantuan AI.</p>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:justify-end">
+                <a href="./__analisa/008_Penawaran_iWaTaLi_Papua_Nokensoft_v1_0.pdf" download
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-file-pdf text-rose-600"></i> Download Audit & Penawaran PDF
+                </a>
+                <a href="https://wa.me/6282199558191" target="_blank"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Kontak PIC Tim Nokensoft
+                </a>
+                <button @click="showDisclaimer = false"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition">
+                    Saya Mengerti
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section id="beranda" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/gallery/galeri1.png" class="w-full h-full object-cover scale-105" alt="Hero Background">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+            <div x-data="{ shown: false }" x-init="setTimeout(() => shown = true, 100)" x-show="shown"
+                x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="opacity-0 translate-y-10" x-transition:enter-end="opacity-100 translate-y-0">
+                <span
+                    class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold mb-6 tracking-wide uppercase">Organisasi
+                    Nirlaba Ekologi & Masyarakat Adat Papua</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6 text-slate-900">
+                    Menjaga <span class="text-primary">Ekologi Sahul</span> untuk Kedaulatan Masyarakat Adat.
+                </h1>
+                <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+                    Yayasan Ekologi Sahul Lestari (YESL) hadir di Tanah Papua sejak 2019 untuk melindungi kedaulatan
+                    masyarakat adat dalam pengelolaan daratan dan perairan secara berkelanjutan.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#tentang"
+                        class="px-8 py-4 bg-primary text-white rounded-2xl font-bold shadow-2xl shadow-blue-200 hover:-translate-y-1 transition">Pelajari
+                        Lebih Lanjut</a>
+                    <a href="#struktur"
+                        class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-primary"></i> Lihat Visi & Misi
+                    </a>
+                </div>
+            </div>
+
+            <div class="hidden md:block relative">
+                <div class="bg-white p-8 rounded-[2rem] shadow-2xl relative z-10 border border-slate-100">
+                    <div class="flex justify-center mb-6 pb-6 border-b border-slate-100">
+                        <img src="images/logo-yesl.png" alt="Logo utama YESL" class="h-40 w-auto object-contain">
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-primary mb-1">2019</p>
+                            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Tahun Berdiri</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-primary mb-1">Mimika</p>
+                            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Pusat Operasional
+                            </p>
+                        </div>
+                        <div class="text-center col-span-2 border-t pt-6">
+                            <p class="text-4xl font-extrabold text-secondary mb-1">Tanah Papua</p>
+                            <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Jangkauan Program
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="blog" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <div>
+                    <span
+                        class="inline-block px-4 py-1.5 bg-slate-100 text-slate-700 rounded-full text-sm font-bold tracking-wide uppercase">Kabar
+                        Terbaru</span>
+                    <h2 class="text-4xl font-extrabold mt-4 mb-4">Blog & Artikel YESL</h2>
+                    <p class="text-slate-600 max-w-2xl">Ikuti perkembangan terbaru, cerita dari lapangan, dan catatan
+                        refleksi kami dalam upaya pemberdayaan masyarakat adat dan pelestarian lingkungan.</p>
+                </div>
+                <a href="#semua-artikel"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition shadow-md">
+                    Tampilkan Halaman Blog <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Artikel 1 -->
+                <a href="#"
+                    class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="relative overflow-hidden">
+                                <img src="images/gallery/galeri1.png" alt="Pemberdayaan masyarakat adat"
+                                    class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 pb-4">
+                                <!-- Kategori di atas judul -->
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Pemberdayaan</span>
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Masyarakat
+                                        Adat</span>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                                    Meningkatkan Kapasitas Kader Adat dalam Pengelolaan Wilayah Kelola
+                                </h3>
+                                <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">Bagaimana kelompok
+                                    masyarakat adat mengoptimalkan ruang darat dan perairan berbasis kearifan lokal yang
+                                    berkelanjutan.</p>
+                            </div>
+                        </div>
+
+                        <!-- Bagian Bawah: Tanggal & Total Kunjungan -->
+                        <div class="px-6 pb-6">
+                            <div
+                                class="flex justify-between items-center pt-3 border-t border-slate-200/60 text-xs text-slate-400 font-medium">
+                                <span>1 Juli 2026</span>
+                                <span
+                                    class="flex items-center gap-1.5 bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md">
+                                    <i class="fa-regular fa-eye text-slate-400"></i> 142
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Artikel 2 -->
+                <a href="#"
+                    class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="relative overflow-hidden">
+                                <img src="images/gallery/galeri2.png" alt="Kajian dan pengelolaan pengetahuan"
+                                    class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 pb-4">
+                                <!-- Kategori di atas judul -->
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Riset
+                                        & Kajian</span>
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Biodiversitas</span>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                                    Pentingnya Pendokumentasian Hukum Adat dan Keanekaragaman Hayati
+                                </h3>
+                                <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">Menelisik proses
+                                    penyusunan profil wilayah adat sebagai basis advokasi dan pelindungan hak-hak
+                                    masyarakat lokal.</p>
+                            </div>
+                        </div>
+
+                        <!-- Bagian Bawah: Tanggal & Total Kunjungan -->
+                        <div class="px-6 pb-6">
+                            <div
+                                class="flex justify-between items-center pt-3 border-t border-slate-200/60 text-xs text-slate-400 font-medium">
+                                <span>25 Juni 2026</span>
+                                <span
+                                    class="flex items-center gap-1.5 bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md">
+                                    <i class="fa-regular fa-eye text-slate-400"></i> 98
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Artikel 3 -->
+                <a href="#"
+                    class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="relative overflow-hidden">
+                                <img src="images/gallery/galeri3.png" alt="Transformasi ekonomi masyarakat adat"
+                                    class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 pb-4">
+                                <!-- Kategori di atas judul -->
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Ekonomi
+                                        Lokal</span>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                                    Transformasi Ekonomi Hijau Melalui Penguatan Lembaga Adat
+                                </h3>
+                                <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">Kolaborasi multipihak
+                                    dalam mengembangkan potensi komoditas lokal yang adil tanpa merusak kelestarian alam
+                                    sekitar.</p>
+                            </div>
+                        </div>
+
+                        <!-- Bagian Bawah: Tanggal & Total Kunjungan -->
+                        <div class="px-6 pb-6">
+                            <div
+                                class="flex justify-between items-center pt-3 border-t border-slate-200/60 text-xs text-slate-400 font-medium">
+                                <span>18 Juni 2026</span>
+                                <span
+                                    class="flex items-center gap-1.5 bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md">
+                                    <i class="fa-regular fa-eye text-slate-400"></i> 215
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Artikel 4 -->
+                <a href="#"
+                    class="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="relative overflow-hidden">
+                                <img src="images/gallery/galeri4.png" alt="Pembiayaan inovatif program berkelanjutan"
+                                    class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 pb-4">
+                                <!-- Kategori di atas judul -->
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Pendanaan</span>
+                                    <span
+                                        class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">Inovasi</span>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                                    Mekanisme Pembiayaan Inovatif untuk Konservasi Berbasis Komunitas
+                                </h3>
+                                <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">Menjamin kesinambungan
+                                    program perlindungan hak adat lewat skema pendanaan yang inklusif dan transparan.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Bagian Bawah: Tanggal & Total Kunjungan -->
+                        <div class="px-6 pb-6">
+                            <div
+                                class="flex justify-between items-center pt-3 border-t border-slate-200/60 text-xs text-slate-400 font-medium">
+                                <span>10 Juni 2026</span>
+                                <span
+                                    class="flex items-center gap-1.5 bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md">
+                                    <i class="fa-regular fa-eye text-slate-400"></i> 310
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-12 bg-primary md:hidden">
+        <div class="px-6 grid grid-cols-2 gap-8 text-white text-center">
+            <div>
+                <p class="text-3xl font-bold">2019</p>
+                <p class="text-xs opacity-80 uppercase">Berdiri</p>
+            </div>
+            <div>
+                <p class="text-3xl font-bold">Mimika</p>
+                <p class="text-xs opacity-80 uppercase">Pusat</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang" class="relative py-24 px-6 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
+        <div class="absolute -top-28 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <img src="images/gallery/tentang1.jpeg" class="rounded-[3rem] shadow-2xl" alt="Tentang YESL">
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-4xl font-extrabold mb-6">Tentang <span class="text-primary">YESL</span></h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        Yayasan Ekologi Sahul Lestari (YESL) merupakan organisasi nirlaba yang hadir di Tanah Papua
+                        sejak 2019 dan berkedudukan di Kabupaten Mimika, Provinsi Papua Tengah, dengan mandat memperkuat
+                        kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                            <div
+                                class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary shrink-0">
+                                <i class="fa-solid fa-handshake-angle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Arti Nama YESL</h4>
+                                <p class="text-sm text-slate-500">Ekologi berarti relasi makhluk hidup dan
+                                    lingkungannya, Sahul merujuk pada bentang biogeografi Australia-Papua, dan Lestari
+                                    menegaskan komitmen menjaga keberlanjutan.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                            <div
+                                class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-secondary shrink-0">
+                                <i class="fa-solid fa-users-gear text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Filosofi Logo</h4>
+                                <p class="text-sm text-slate-500">Warna putih melambangkan ketulusan dan kepercayaan,
+                                    hijau mencerminkan keberlanjutan tanah dan manusia Papua, motif Papua-berdaun
+                                    menunjukkan kekayaan alam, serta lingkaran terputus menggambarkan sejarah Paparan
+                                    Sahul.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="struktur" class="py-24 bg-slate-100 px-6">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-extrabold mb-4">Visi, Misi & Kontak YESL</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto">"Terwujudnya tata kelola sumber daya alam yang adil dan lestari
+                bagi komunitas adat."</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div
+                class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20">
+                <div
+                    class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Visi YESL</h3>
+                <p class="text-slate-500 mb-4 text-sm">Terwujudnya tata kelola sumber daya alam yang adil dan lestari
+                    bagi komunitas adat di Tanah Papua.</p>
+                <span class="text-primary font-bold inline-flex items-center gap-2">
+                    Tata Kelola Berkeadilan <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </div>
+            <div
+                class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20">
+                <div
+                    class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-secondary text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Misi Utama</h3>
+                <p class="text-slate-500 mb-4 text-sm">Memperkuat kapasitas masyarakat adat, mendorong pengakuan hukum
+                    wilayah adat, melestarikan praktik tradisional, serta mengembangkan ekonomi lokal berkelanjutan.</p>
+                <span class="text-primary font-bold inline-flex items-center gap-2">
+                    Penguatan Adat & Ekosistem <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </div>
+            <a href="https://maps.google.com/?q=Kabupaten+Mimika+Papua+Tengah" target="_blank"
+                class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20">
+                <div
+                    class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-700 text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Lokasi Lembaga</h3>
+                <p class="text-slate-500 mb-4 text-sm">YESL berkedudukan di Kabupaten Mimika, Provinsi Papua Tengah dan
+                    bekerja bersama komunitas adat di berbagai wilayah Tanah Papua.</p>
+                <span class="text-primary font-bold inline-flex items-center gap-2">
+                    Lihat Lokasi <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <section id="nilai-organisasi" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
+            <div>
+                <span
+                    class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold tracking-wide uppercase">Nilai
+                    Inti YESL</span>
+                <h2 class="text-4xl font-extrabold mt-4 mb-6">Nilai-Nilai Organisasi</h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold mb-2">Menghormati HAM</h4>
+                        <p class="text-sm text-slate-600">Mengutamakan nilai Hak Asasi Manusia dalam sikap, tindakan,
+                            dan pengambilan keputusan organisasi.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold mb-2">Demokratis</h4>
+                        <p class="text-sm text-slate-600">Melibatkan konstituen secara aktif dan setara dalam proses
+                            keputusan kolektif.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold mb-2">Keadilan Gender</h4>
+                        <p class="text-sm text-slate-600">Menjamin hak atas kehidupan dan lingkungan layak tanpa
+                            diskriminasi jenis kelamin, agama, dan status sosial.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold mb-2">Keadilan Generasi</h4>
+                        <p class="text-sm text-slate-600">Menjaga kesamaan hak antar generasi melalui perlibatan
+                            konstituen dalam proses kolektif.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold mb-2">Keadilan Ekologis</h4>
+                        <p class="text-sm text-slate-600">Memastikan akses manfaat sumber daya alam dan pengakuan
+                            terhadap keragaman cara masyarakat mengelola alam.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold mb-2">Anti Kekerasan</h4>
+                        <p class="text-sm text-slate-600">Menolak segala bentuk praktik kekerasan oleh individu,
+                            kelompok, modal, maupun negara.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8">
+                <span
+                    class="inline-block px-4 py-1.5 bg-orange-100 text-secondary rounded-full text-sm font-bold tracking-wide uppercase">Struktur
+                    Organisasi</span>
+                <h3 class="text-3xl font-extrabold mt-4 mb-6">Tim Inti YESL</h3>
+                <ul class="space-y-3 text-slate-700 leading-relaxed">
+                    <li><span class="font-bold">Netty Bakara</span> — Pendiri & Pembina</li>
+                    <li><span class="font-bold">Mariana J. Hamadi</span> — Pengawas</li>
+                    <li><span class="font-bold">Rintho G. Maturbongs</span> — Direktur</li>
+                    <li><span class="font-bold">Prasetyo</span> — Program Manager</li>
+                    <li><span class="font-bold">Nadhya Tamrin</span> — Finance & Admin Officer</li>
+                    <li><span class="font-bold">Eka J. Kafiar</span> — Field Officer</li>
+                    <li><span class="font-bold">Martince Fatie</span> — Fasilitator Lokal</li>
+                </ul>
+                <p class="text-sm text-slate-500 mt-6">Struktur ini memperkuat peran kelembagaan YESL dalam advokasi,
+                    pendampingan komunitas adat, dan tata kelola sumber daya alam yang lestari.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tim-yesl" class="py-24 px-6 bg-slate-50" x-data="{ activeTeamGroup: 'pembina' }">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 text-center">
+                <span
+                    class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold tracking-wide uppercase">Tim
+                    YESL</span>
+                <h2 class="text-4xl font-extrabold mt-4 mb-4">Tim Pelaksana Program</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto">Profil tim YESL berdasarkan tiga kelompok peran untuk
+                    memastikan program berjalan efektif, inklusif, dan berkelanjutan.</p>
+            </div>
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <aside class="lg:col-span-4">
+                    <div class="bg-white rounded-3xl border border-slate-200 p-4 space-y-3 sticky top-24">
+                        <button @click="activeTeamGroup = 'pembina'"
+                            class="w-full text-left p-4 rounded-2xl border transition"
+                            :class="activeTeamGroup === 'pembina' ? 'bg-blue-50 border-blue-200' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="font-bold text-slate-900">Pembina dan Pengawas</p>
+                                    <p class="text-sm text-slate-500">2 orang</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"
+                                    :class="activeTeamGroup === 'pembina' ? 'rotate-180' : ''"></i>
+                            </div>
+                        </button>
+                        <button @click="activeTeamGroup = 'eksekutif'"
+                            class="w-full text-left p-4 rounded-2xl border transition"
+                            :class="activeTeamGroup === 'eksekutif' ? 'bg-blue-50 border-blue-200' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="font-bold text-slate-900">Eksekutif dan Tim Managemen</p>
+                                    <p class="text-sm text-slate-500">2 orang</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"
+                                    :class="activeTeamGroup === 'eksekutif' ? 'rotate-180' : ''"></i>
+                            </div>
+                        </button>
+                        <button @click="activeTeamGroup = 'operasional'"
+                            class="w-full text-left p-4 rounded-2xl border transition"
+                            :class="activeTeamGroup === 'operasional' ? 'bg-blue-50 border-blue-200' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="font-bold text-slate-900">Staf Operasional</p>
+                                    <p class="text-sm text-slate-500">3 orang</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"
+                                    :class="activeTeamGroup === 'operasional' ? 'rotate-180' : ''"></i>
+                            </div>
+                        </button>
+                    </div>
+                </aside>
+                <div class="lg:col-span-8">
+                    <div x-show="activeTeamGroup === 'pembina'" x-transition.opacity.duration.200ms
+                        class="grid sm:grid-cols-2 gap-5">
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/tim1.jpeg" alt="Foto Netty Bakara"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-6">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Pendiri &
+                                    Pembina</p>
+                                <h3 class="text-xl font-extrabold mb-2">Netty Bakara</h3>
+                                <p class="text-sm text-slate-600">Memastikan arah kelembagaan selaras dengan visi
+                                    konservasi dan pemberdayaan masyarakat adat.</p>
+                            </div>
+                        </article>
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/tim2.jpeg" alt="Foto Mariana J. Hamadi"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-6">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Pengawas</p>
+                                <h3 class="text-xl font-extrabold mb-2">Mariana J. Hamadi</h3>
+                                <p class="text-sm text-slate-600">Melakukan pengawasan agar tata kelola program tetap
+                                    akuntabel dan transparan.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div x-show="activeTeamGroup === 'eksekutif'" x-transition.opacity.duration.200ms
+                        class="grid sm:grid-cols-2 gap-5">
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/gallery/galeri3.png" alt="Foto Jhon Doe"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-6">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Direktur</p>
+                                <h3 class="text-xl font-extrabold mb-2">Jhon Doe</h3>
+                                <p class="text-sm text-slate-600">Mengelola strategi organisasi dan kemitraan untuk
+                                    memperluas dampak program YESL.</p>
+                            </div>
+                        </article>
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/gallery/galeri4.png" alt="Foto Jane Doe"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-6">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Program
+                                    Manager</p>
+                                <h3 class="text-xl font-extrabold mb-2">Jane Doe</h3>
+                                <p class="text-sm text-slate-600">Mengoordinasikan perencanaan dan pelaksanaan kegiatan
+                                    agar tepat sasaran di lapangan.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div x-show="activeTeamGroup === 'operasional'" x-transition.opacity.duration.200ms
+                        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/gallery/galeri5.png" alt="Foto Jhon Doe"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-5">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Finance &
+                                    Admin</p>
+                                <h3 class="text-lg font-extrabold mb-2">Jhon Doe</h3>
+                                <p class="text-sm text-slate-600">Menangani kebutuhan administrasi dan keuangan program
+                                    secara tertib dan efisien.</p>
+                            </div>
+                        </article>
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/gallery/tentang1.jpeg" alt="Foto Jane Doe"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-5">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Field Officer
+                                </p>
+                                <h3 class="text-lg font-extrabold mb-2">Jane Doe</h3>
+                                <p class="text-sm text-slate-600">Mendampingi komunitas secara langsung untuk memastikan
+                                    kualitas implementasi kegiatan.</p>
+                            </div>
+                        </article>
+                        <article class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                            <img src="images/gallery/tentang2.png" alt="Foto Jhon Doe"
+                                class="w-full aspect-square object-cover">
+                            <div class="p-5">
+                                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-2">Fasilitator
+                                    Lokal</p>
+                                <h3 class="text-lg font-extrabold mb-2">Jhon Doe</h3>
+                                <p class="text-sm text-slate-600">Menjembatani koordinasi dengan masyarakat adat agar
+                                    komunikasi program tetap kontekstual.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="galeri-kegiatan" class="py-24 px-6 bg-white" x-data="{
+        items: [
+            {
+                image: 'images/gallery/galeri1.png',
+                title: 'Pemetaan Partisipatif Wilayah Tangkap Suku Kamoro',
+                views: 142,
+                total_images: 12
+            },
+            {
+                image: 'images/gallery/galeri2.png',
+                title: 'Pengembangan Pemandu Lokal Ekowisata Mangrove Pomako',
+                views: 98,
+                total_images: 8
+            },
+            {
+                image: 'images/gallery/galeri3.png',
+                title: 'Kajian EKOSOBLING & Profil Masyarakat Hukum Adat',
+                views: 215,
+                total_images: 24
+            },
+            {
+                image: 'images/gallery/galeri4.png',
+                title: 'Perhutanan Sosial Perempuan & Generasi Muda Papua Phase II',
+                views: 310,
+                total_images: 15
+            },
+            {
+                image: 'images/gallery/galeri5.png',
+                title: 'Pengelolaan Hutan Desa Yefu, Wagi, dan Sagare',
+                views: 187,
+                total_images: 18
+            }
+        ]
+    }">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header Section -->
+            <div class="mb-12 text-center">
+                <span
+                    class="inline-block px-4 py-1.5 bg-blue-100 text-primary rounded-full text-sm font-bold tracking-wide uppercase">Galeri
+                    Foto YESL</span>
+                <h2 class="text-4xl font-extrabold mt-4 mb-4">Dokumentasi & Album Kegiatan</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto">Ringkasan capaian program YESL dari pemetaan partisipatif,
+                    kajian masyarakat adat, hingga penguatan perhutanan sosial di Tanah Papua.</p>
+            </div>
+
+            <!-- Grid Album -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="(item, index) in items" :key="index">
+                    <!-- Link diubah langsung menggunakan href="#" -->
+                    <a href="#"
+                        class="group bg-slate-50 p-4 rounded-3xl border border-slate-200/80 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <!-- Rasio landscape 1.91:1 -->
+                            <div
+                                class="aspect-[1.91/1] overflow-hidden rounded-2xl shadow-sm border border-slate-200 bg-slate-100 relative">
+                                <img :src="item.image" :alt="item.title"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </div>
+                            <p class="mt-4 text-base font-bold text-slate-800 leading-snug group-hover:text-primary transition-colors"
+                                x-text="item.title"></p>
+                        </div>
+
+                        <!-- Bagian Bawah: Total Item Gambar & Total Kunjungan -->
+                        <div
+                            class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-400 font-medium">
+                            <!-- Label Total Item Foto -->
+                            <span
+                                class="flex items-center gap-1.5 bg-blue-50 text-primary px-2.5 py-1 rounded-md text-[11px] font-bold">
+                                <i class="fa-regular fa-images"></i> <span x-text="item.total_images + ' Foto'"></span>
+                            </span>
+                            <!-- Label Kunjungan -->
+                            <span class="flex items-center gap-1.5 bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md">
+                                <i class="fa-regular fa-eye text-slate-400"></i> <span x-text="item.views"></span>
+                            </span>
+                        </div>
+                    </a>
+                </template>
+            </div>
+
+            <!-- Footer Button -->
+            <div class="mt-10 text-center">
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition shadow-lg">
+                    Lihat Semua Album <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="donasi" class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Dekorasi Aksen Latar Belakang (Opsional) -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                
+                <!-- Kolom Kiri: Visual / Gambar Bersorot -->
+                <div class="relative group">
+                    <!-- Bingkai Efek Glow Belakang Gambar -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-emerald-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-40 transition duration-500"></div>
+                    
+                    <!-- Wadah Gambar Berasio Landscape Stabil (Aspek Rasio 4:3 atau 16:9 disesuaikan kebutuhan) -->
+                    <div class="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-slate-800">
+                        <img src="images/gallery/galeri4.png" alt="Dukung Aksi Ekologi YESL" class="w-full h-full object-cover object-center transform group-hover:scale-102 transition duration-700">
+                        
+                        <!-- Lapisan Gradasi Gelap di Atas Gambar -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Konten Teks & Aksi Utama -->
+                <div class="flex flex-col justify-center">
+                    <!-- Label Badge -->
+                    <div class="mb-4">
+                        <span class="inline-block px-3.5 py-1.5 bg-blue-500/20 border border-blue-400/30 text-blue-400 rounded-full text-xs font-bold tracking-wider uppercase">
+                            Mari Berkontribusi
+                        </span>
+                    </div>
+
+                    <!-- Judul Utama -->
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight mb-6">
+                        Dukung Aksi Nyata Pelestarian <br class="hidden md:block">
+                        Ekologi & Masyarakat Adat Papua
+                    </h2>
+
+                    <!-- Deskripsi / Teks Penjelas -->
+                    <div class="text-slate-300 space-y-4 mb-8 text-base md:text-lg leading-relaxed">
+                        <p>
+                            Setiap dukungan yang Anda salurkan bersama Yayasan Ekologi Sahul Lestari (YESL) akan dialokasikan langsung untuk mendanai program pemetaan partisipatif wilayah adat, penguatan kapasitas perempuan pengelola hutan desa, serta kajian ekosobling di gardu terdepan Papua.
+                        </p>
+                        <p class="text-sm text-slate-400">
+                            Transparansi adalah prioritas kami. Seluruh laporan penyaluran dana dan capaian program akan dilaporkan secara berkala kepada publik dan para mitra pendukung.
+                        </p>
+                    </div>
+
+                    <!-- Tombol Aksi Chat WhatsApp -->
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <a href="https://wa.me/62811490000?text=Halo%20YESL%2C%20saya%20ingin%20berkontribusi%20dan%20mengetahui%20prosedur%20donasi%20program." 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-500 active:scale-98 transition-all shadow-xl shadow-blue-600/20 group">
+                            <!-- Ikon Font Awesome WhatsApp -->
+                            <i class="fa-brands fa-whatsapp text-xl group-hover:animate-bounce"></i>
+                            <span>Hubungi via WhatsApp Donasi</span>
+                        </a>
+                        
+                        <!-- Informasi Tambahan Ringkas -->
+                        <span class="text-xs text-slate-400 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-emerald-500"></i> Respons cepat & Terverifikasi resmi
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="cta-siap-menjadi" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto relative overflow-hidden bg-primary rounded-[3rem] p-12 md:p-20 text-center">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Siap Berkolaborasi untuk <br
+                        class="hidden md:block"> Tata Kelola SDA yang Adil?</h2>
+                <p class="text-blue-100 mb-10 max-w-xl mx-auto text-lg">Bersama YESL, mari memperkuat kapasitas
+                    masyarakat adat, perlindungan wilayah adat, dan pengembangan ekonomi lokal berkelanjutan.</p>
+                <a href="#kontak"
+                    class="bg-white text-primary px-10 py-4 rounded-2xl font-extrabold hover:bg-secondary hover:text-white transition-all shadow-2xl">Hubungi
+                    YESL</a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-white pt-20 pb-10 px-6 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="images/logo-yesl.png" alt="Logo YESL" class="w-9 h-9 object-contain">
+                        <span class="font-extrabold text-xl tracking-tight text-slate-800">Yayasan Ekologi Sahul Lestari (YESL)</span>
+                    </div>
+                    <p class="text-slate-500 max-w-md mb-6 leading-relaxed text-sm">
+                        Yayasan Ekologi Sahul Lestari (YESL) adalah organisasi nirlaba yang bergerak di bidang pelestarian ekologi, perlindungan keanekaragaman hayati, dan penguatan hak-hak masyarakat adat di Tanah Papua.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all shadow-sm" title="Instagram">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all shadow-sm" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all shadow-sm" title="YouTube">
+                            <i class="fa-brands fa-youtube text-base"></i>
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all shadow-sm" title="WhatsApp Channel">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="font-bold mb-6 uppercase tracking-widest text-xs text-slate-400">Tautan Cepat</h5>
+                    <ul class="space-y-4 font-semibold text-sm">
+                        <li><a href="#tentang" class="text-slate-600 hover:text-primary transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i> Tentang Kami</a></li>
+                        <li><a href="#blog" class="text-slate-600 hover:text-primary transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i> Program Prioritas</a></li>
+                        <li><a href="#galeri-kegiatan" class="text-slate-600 hover:text-primary transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i> Perjalanan Program</a></li>
+                        <li><a href="#kontak" class="text-slate-600 hover:text-primary transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i> Kontak Kantor</a></li>
+                    </ul>
+                </div>
+
+                <div id="kontak" class="flex flex-col justify-between gap-4">
+                    <div>
+                        <h5 class="font-bold mb-5 uppercase tracking-widest text-xs text-slate-400">Kantor Operasional</h5>
+                        <div class="text-sm text-slate-600 font-medium leading-relaxed space-y-2">
+                            <p class="flex items-start gap-2">
+                                <i class="fa-solid fa-location-dot text-slate-400 mt-1 flex-shrink-0"></i>
+                                <span>Jl. Cendrawasih No. 45, Kota Timika,<br>Kabupaten Mimika, Papua Tengah 99910</span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-phone text-slate-400 flex-shrink-0"></i>
+                                <a href="https://wa.me/62811490000" target="_blank" class="hover:text-primary transition-colors">+62 811-4900-00</a>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i class="fa-solid fa-envelope text-slate-400 flex-shrink-0"></i>
+                                <a href="mailto:info@yesl.or.id" class="hover:text-primary transition-colors">info@yesl.or.id</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full h-28 rounded-xl overflow-hidden border border-slate-200 shadow-sm opacity-90 hover:opacity-100 transition-opacity">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127339.75620950337!2d136.81180299!3d-4.542247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1m3!1s0x2d2f1be710156947%3A0x40315b22f1837d0!2sTimika%2C%20Mimika%20Regency%2C%20Papua!5e0!3m2!1sen!2sid!4v1710000000000!5m2!1sen!2sid" 
+                            class="w-full h-full border-0" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-10 text-center flex flex-col items-center justify-center">
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4 text-xs font-semibold text-slate-400">
+                    <a href="#privacy" class="hover:text-primary transition-colors">Kebijakan Privasi</a>
+                    <span class="text-slate-200">|</span>
+                    <a href="#faq" class="hover:text-primary transition-colors">FAQ (Tanya Jawab)</a>
+                    <span class="text-slate-200">|</span>
+                    <a href="#sitemap" class="hover:text-primary transition-colors">Peta Situs</a>
+                </div>
+                
+                <p class="text-slate-400 text-sm">© 2026 Yayasan Ekologi Sahul Lestari (YESL). All rights reserved.</p>
+                <p class="text-slate-400 text-xs mt-2 font-medium">Powered by <a href="https://nokensoft.com" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-500 hover:text-primary transition-colors">Nokensoft.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mapContainer = document.getElementById('dpcMap');
+            if (!mapContainer || typeof L === 'undefined') return;
+            const map = L.map('dpcMap', { scrollWheelZoom: false }).setView([-4.6, 136.9], 6);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            const baseRegions = [
+                { name: 'Mimika', lat: -4.54, lng: 136.89 },
+                { name: 'Pigapu', lat: -4.63, lng: 136.86 },
+                { name: 'Sorong Selatan', lat: -1.33, lng: 131.20 },
+                { name: 'Konda', lat: -2.22, lng: 131.28 },
+                { name: 'Asmat', lat: -5.25, lng: 138.50 },
+                { name: 'Yefu', lat: -5.83, lng: 138.20 },
+                { name: 'Wagi', lat: -5.62, lng: 138.35 },
+                { name: 'Sagare', lat: -5.47, lng: 138.25 }
+            ];
+            const offsets = [
+                { lat: 0.00, lng: 0.00 },
+                { lat: 0.10, lng: 0.14 },
+                { lat: -0.09, lng: 0.08 },
+                { lat: 0.07, lng: -0.12 }
+            ];
+            const programPoints = [];
+            baseRegions.forEach(function (region) {
+                offsets.forEach(function (offset, index) {
+                    programPoints.push({
+                        name: `Program ${region.name} ${index + 1}`,
+                        lat: region.lat + offset.lat,
+                        lng: region.lng + offset.lng
+                    });
+                });
+            });
+            programPoints.forEach(function (point) {
+                L.circleMarker([point.lat, point.lng], {
+                    radius: 6,
+                    color: '#0F4C81',
+                    weight: 2,
+                    fillColor: '#0F4C81',
+                    fillOpacity: 0.72
+                }).addTo(map).bindPopup(`<strong>${point.name}</strong><br>Contoh titik program YESL`);
+            });
+            const bounds = L.latLngBounds(programPoints.map(function (point) {
+                return [point.lat, point.lng];
+            }));
+            map.fitBounds(bounds.pad(0.2));
+        });
+    </script>
+
+</body>
+
+</html>

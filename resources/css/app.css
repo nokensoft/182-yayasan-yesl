@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Hijau daun (leaf green) */
+    --color-primary-50: #f0faf1;
+    --color-primary-100: #dbf3de;
+    --color-primary-200: #bae7bf;
+    --color-primary-300: #8bd493;
+    --color-primary-400: #55ba62;
+    --color-primary-500: #319b40;
+    --color-primary-600: #237d31;
+    --color-primary-700: #1e6329;
+    --color-primary-800: #1b4f24;
+    --color-primary-900: #17411f;
+    --color-primary-950: #08240f;
+    --color-primary: #237d31;
+
+    --color-secondary: #d97706;
+}
+
+/* Base + utilities */
+[x-cloak] {
+    display: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.dark .glass {
+    background: rgba(15, 23, 42, 0.72);
+}
+
+.bg-grid-pattern {
+    background-image:
+        linear-gradient(to right, rgba(34, 125, 49, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(34, 125, 49, 0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+a[href],
+button,
+[role="button"] {
+    cursor: pointer;
+}
+
+/* Topbar disclaimer (tahap pengembangan) + offset navigasi publik */
+.site-nav {
+    top: 2.25rem;
+}
+
+.notice-dismissed .site-nav {
+    top: 0;
+}
+
+.notice-dismissed .dev-notice-bar {
+    display: none;
+}
+
+/* Konten artikel (output TinyMCE) */
+.article-content {
+    line-height: 1.75;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 1.5em 0 0.6em;
+}
+
+.article-content h2 {
+    font-size: 1.5rem;
+}
+
+.article-content h3 {
+    font-size: 1.25rem;
+}
+
+.article-content p {
+    margin: 0 0 1em;
+}
+
+.article-content ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0 0 1em;
+}
+
+.article-content ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin: 0 0 1em;
+}
+
+.article-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.article-content img {
+    border-radius: 0.75rem;
+    margin: 1rem 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.article-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1rem;
+    font-style: italic;
+    color: #64748b;
+    margin: 0 0 1em;
+}
+
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1em;
+}
+
+.article-content th,
+.article-content td {
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem;
+}
+
+.dark .article-content {
+    color: #cbd5e1;
+}
+
+.dark .article-content blockquote {
+    color: #94a3b8;
+}
+
+.dark .article-content th,
+.dark .article-content td {
+    border-color: #334155;
+}
