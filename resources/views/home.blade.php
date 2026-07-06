@@ -319,8 +319,8 @@
     <section id="donasi" class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <img src="{{ asset('images/gallery/galeri4.png') }}" alt="Dukung Aksi Ekologi YESL" class="w-full h-full object-cover" loading="lazy">
+            <div class="relative h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                <img src="{{ asset('images/pemetaan-profil-adat.jpg') }}" alt="Dukung Aksi Ekologi YESL" class="w-full h-full object-cover" loading="lazy">
             </div>
             <div>
                 <span class="inline-block px-3.5 py-1.5 bg-primary-500/20 border border-primary-400/30 text-primary-300 rounded-full text-xs font-bold tracking-wider uppercase mb-4">Mari Berkontribusi</span>
