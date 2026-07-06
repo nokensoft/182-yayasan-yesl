@@ -25,7 +25,7 @@
     {{-- HERO --}}
     <section id="beranda" class="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/gallery/galeri1.png') }}" class="w-full h-full object-cover" alt="Kegiatan YESL di Tanah Papua" fetchpriority="high">
+            <img src="{{ asset('images/bg1.png') }}" class="w-full h-full object-cover" alt="Kegiatan YESL di Tanah Papua" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/30 dark:from-slate-950 dark:via-slate-950/90 dark:to-slate-950/40"></div>
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
