@@ -94,27 +94,57 @@
     </div>
 </footer>
 
-{{-- Tombol Kembali ke Atas --}}
-<button id="backToTop"
-    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-    aria-label="Kembali ke atas"
-    class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-primary text-white rounded-full shadow-lg
-           flex items-center justify-center
-           opacity-0 invisible transition-all duration-300
-           hover:bg-primary/90 hover:scale-110">
-    <i class="fa-solid fa-chevron-up text-sm"></i>
-</button>
+{{-- Widget Mengambang: Back to Top + Media Sosial --}}
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-2">
+
+    {{-- Tombol Kembali ke Atas (muncul saat scroll) --}}
+    <button id="backToTop"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        aria-label="Kembali ke atas"
+        class="w-11 h-11 bg-primary text-white rounded-full shadow-lg
+               flex items-center justify-center
+               opacity-0 invisible transition-all duration-300
+               hover:bg-primary-700 hover:scale-110">
+        <i class="fa-solid fa-chevron-up text-sm"></i>
+    </button>
+
+    {{-- Pemisah --}}
+    <div id="socialDivider" class="w-px h-4 bg-slate-300 dark:bg-slate-600 rounded-full opacity-0 invisible transition-all duration-300"></div>
+
+    {{-- Icon Media Sosial --}}
+    @foreach ([
+        ['Instagram',  'fa-instagram',  'https://www.instagram.com/sahullestari/',                    'hover:bg-pink-500'],
+        ['Facebook',   'fa-facebook-f', 'https://www.facebook.com/sahullestari',                      'hover:bg-blue-600'],
+        ['YouTube',    'fa-youtube',    'https://www.youtube.com/@EkologiSahullestari',                'hover:bg-red-600'],
+        ['WhatsApp',   'fa-whatsapp',   'https://whatsapp.com/channel/0029Vb7u21MLikg8hoxIIH3I',     'hover:bg-green-500'],
+    ] as [$label, $icon, $url, $hoverBg])
+        <a href="{{ $url }}" target="_blank" rel="noopener" title="{{ $label }}"
+            class="w-11 h-11 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300
+                   rounded-full shadow-md border border-slate-100 dark:border-white/10
+                   flex items-center justify-center
+                   {{ $hoverBg }} hover:text-white hover:scale-110 hover:shadow-lg
+                   transition-all duration-200">
+            <i class="fa-brands {{ $icon }} text-sm"></i>
+        </a>
+    @endforeach
+
+</div>
 
 <script>
     (function () {
         const btn = document.getElementById('backToTop');
+        const divider = document.getElementById('socialDivider');
         window.addEventListener('scroll', function () {
             if (window.scrollY > 300) {
                 btn.classList.remove('opacity-0', 'invisible');
                 btn.classList.add('opacity-100', 'visible');
+                divider.classList.remove('opacity-0', 'invisible');
+                divider.classList.add('opacity-100', 'visible');
             } else {
                 btn.classList.add('opacity-0', 'invisible');
                 btn.classList.remove('opacity-100', 'visible');
+                divider.classList.add('opacity-0', 'invisible');
+                divider.classList.remove('opacity-100', 'visible');
             }
         }, { passive: true });
     })();

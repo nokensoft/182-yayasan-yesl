@@ -27,6 +27,7 @@
         <div class="absolute inset-0 z-0">
             <img src="{{ asset('images/bg1.png') }}" class="w-full h-full object-cover" alt="Kegiatan YESL di Tanah Papua" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
+            <div class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/85 via-white/30 to-transparent"></div>
         </div>
         <div class="relative z-10 max-w-3xl mx-auto px-6 w-full text-center">
             <span class="inline-block px-4 py-1.5 bg-primary-500/20 border border-primary-400/30 text-primary-300 rounded-full text-xs font-bold mb-6 tracking-wide uppercase">Organisasi Nirlaba Ekologi & Masyarakat Adat Papua</span>
