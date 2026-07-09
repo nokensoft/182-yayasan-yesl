@@ -20,10 +20,12 @@ class TrackVisitor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $response = $next($request);
-
         try {
             // Hanya untuk request GET biasa yang mengembalikan HTML.
+            // Dicatat SEBELUM response dirender agar statistik pengunjung di
+            // footer (dihitung saat view dirender) sudah menyertakan kunjungan
+            // ini -> angka "Hari Ini" langsung terhitung, bukan tertinggal satu
+            // request atau menunggu cache statistik kedaluwarsa.
             if ($request->isMethod('GET') && ! $request->ajax()) {
                 $this->record($request);
             }
@@ -31,7 +33,7 @@ class TrackVisitor
             // Abaikan: tracking tidak boleh mengganggu pengalaman pengunjung.
         }
 
-        return $response;
+        return $next($request);
     }
 
     protected function record(Request $request): void
@@ -50,12 +52,18 @@ class TrackVisitor
             return;
         }
 
-        Visitor::firstOrCreate([
+        $visitor = Visitor::firstOrCreate([
             'ip_address' => $ip,
             'visit_date' => $today,
         ]);
 
         // Tandai sampai akhir hari agar tidak menulis DB berulang.
         Cache::put($cacheKey, true, Carbon::now()->endOfDay());
+
+        // Kunjungan baru -> segarkan cache statistik footer agar angka
+        // langsung ter-update tanpa menunggu TTL 5 menit kedaluwarsa.
+        if ($visitor->wasRecentlyCreated) {
+            Cache::forget('visitor_stats');
+        }
     }
 }
