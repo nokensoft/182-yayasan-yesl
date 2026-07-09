@@ -18,13 +18,19 @@ class AlbumController extends Controller
 
     public function index(Request $request): View
     {
+        $categories = Category::orderBy('name')->get();
+
         $albums = Album::withCount('photos')
             ->when($request->get('q'), fn ($q, $s) => $q->where('title', 'like', "%{$s}%"))
+            ->when($request->get('status'), fn ($q, $s) => $q->where('status', $s))
+            ->when($request->get('category'), fn ($q, $c) => $q->whereHas('categories', fn ($qc) => $qc->where('categories.id', $c)))
             ->latest()
             ->paginate(12)
             ->withQueryString();
 
-        return view('dashboard.albums.index', compact('albums'));
+        $trashedCount = Album::onlyTrashed()->count();
+
+        return view('dashboard.albums.index', compact('albums', 'categories', 'trashedCount'));
     }
 
     public function create(): View

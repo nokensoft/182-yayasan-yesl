@@ -18,13 +18,19 @@ class PostController extends Controller
 
     public function index(Request $request): View
     {
+        $categories = Category::orderBy('name')->get();
+
         $posts = Post::with('categories')
             ->when($request->get('q'), fn ($q, $s) => $q->where('title', 'like', "%{$s}%"))
+            ->when($request->get('status'), fn ($q, $s) => $q->where('status', $s))
+            ->when($request->get('category'), fn ($q, $c) => $q->whereHas('categories', fn ($qc) => $qc->where('categories.id', $c)))
             ->latest()
             ->paginate(12)
             ->withQueryString();
 
-        return view('dashboard.posts.index', compact('posts'));
+        $trashedCount = Post::onlyTrashed()->count();
+
+        return view('dashboard.posts.index', compact('posts', 'categories', 'trashedCount'));
     }
 
     public function create(): View
