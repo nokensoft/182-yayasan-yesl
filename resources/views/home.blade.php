@@ -26,44 +26,21 @@
     <section id="beranda" class="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16">
         <div class="absolute inset-0 z-0">
             <img src="{{ asset('images/bg1.png') }}" class="w-full h-full object-cover" alt="Kegiatan YESL di Tanah Papua" fetchpriority="high">
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/30 dark:from-slate-950 dark:via-slate-950/90 dark:to-slate-950/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
         </div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold mb-6 tracking-wide uppercase">Organisasi Nirlaba Ekologi & Masyarakat Adat Papua</span>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-6">
-                    Menjaga <span class="text-primary">Ekologi Sahul</span> untuk Kedaulatan Masyarakat Adat.
-                </h1>
-                <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-lg leading-relaxed">
-                    Yayasan Ekologi Sahul Lestari (YESL) hadir di Tanah Papua sejak 2019 untuk melindungi kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan secara berkelanjutan.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#tentang" class="px-7 py-3.5 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/25 hover:-translate-y-0.5 transition">Pelajari Lebih Lanjut</a>
-                    <a href="{{ route('blog.index') }}" class="px-7 py-3.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-100 border border-slate-200 dark:border-white/10 rounded-2xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition flex items-center gap-2">
-                        <i class="fa-solid fa-newspaper text-primary"></i> Baca Blog
-                    </a>
-                </div>
-            </div>
-            <div class="hidden md:block">
-                <div class="bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-white/10">
-                    <div class="flex justify-center mb-6 pb-6 border-b border-slate-100 dark:border-white/10">
-                        <img src="{{ asset('images/logo-yesl.png') }}" alt="Logo utama YESL" class="h-36 w-auto object-contain" loading="lazy">
-                    </div>
-                    <div class="grid grid-cols-2 gap-6 text-center">
-                        <div>
-                            <p class="text-3xl font-extrabold text-primary mb-1">2019</p>
-                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tahun Berdiri</p>
-                        </div>
-                        <div>
-                            <p class="text-3xl font-extrabold text-primary mb-1">Mimika</p>
-                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pusat Operasional</p>
-                        </div>
-                        <div class="col-span-2 border-t border-slate-100 dark:border-white/10 pt-5">
-                            <p class="text-3xl font-extrabold text-secondary mb-1">Tanah Papua</p>
-                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Jangkauan Program</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="relative z-10 max-w-3xl mx-auto px-6 w-full text-center">
+            <span class="inline-block px-4 py-1.5 bg-primary-500/20 border border-primary-400/30 text-primary-300 rounded-full text-xs font-bold mb-6 tracking-wide uppercase">Organisasi Nirlaba Ekologi & Masyarakat Adat Papua</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-6 text-white">
+                Menjaga <span class="text-primary-300">Ekologi Sahul</span> untuk Kedaulatan Masyarakat Adat.
+            </h1>
+            <p class="text-lg text-slate-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Yayasan Ekologi Sahul Lestari (YESL) hadir di Tanah Papua sejak 2019 untuk melindungi kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan secara berkelanjutan.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#tentang" class="px-7 py-3.5 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/25 hover:-translate-y-0.5 transition">Pelajari Lebih Lanjut</a>
+                <a href="{{ route('blog.index') }}" class="px-7 py-3.5 bg-white/10 text-white border border-white/25 rounded-2xl font-bold hover:bg-white/20 transition flex items-center gap-2 backdrop-blur-sm">
+                    <i class="fa-solid fa-newspaper text-primary-300"></i> Baca Blog
+                </a>
             </div>
         </div>
     </section>
@@ -426,20 +403,19 @@
 
             @php
                 $mengapaYesl = [
-                    ['Dipimpin oleh Masyarakat Adat', 'Bekerja bersama dan dipimpin oleh masyarakat adat Papua.'],
-                    ['Berbasis Bentang Alam', 'Pendekatan bentang alam untuk perlindungan yang berkelanjutan.'],
-                    ['Berbasis Bukti', 'Keputusan berbasis data, riset, dan pengetahuan lokal.'],
-                    ['Kolaboratif', 'Berkolaborasi dengan pemerintah, komunitas, swasta, akademisi, dan donor.'],
-                    ['Akuntabel & Transparan', 'Tata kelola yang baik dan transparansi dalam setiap langkah kami.'],
+                    ['fa-users', 'Dipimpin oleh Masyarakat Adat', 'Bekerja bersama dan dipimpin oleh masyarakat adat Papua.'],
+                    ['fa-mountain-sun', 'Berbasis Bentang Alam', 'Pendekatan bentang alam untuk perlindungan yang berkelanjutan.'],
+                    ['fa-magnifying-glass-chart', 'Berbasis Bukti', 'Keputusan berbasis data, riset, dan pengetahuan lokal.'],
+                    ['fa-handshake', 'Kolaboratif', 'Berkolaborasi dengan pemerintah, komunitas, swasta, akademisi, dan donor.'],
+                    ['fa-scale-balanced', 'Akuntabel & Transparan', 'Tata kelola yang baik dan transparansi dalam setiap langkah kami.'],
                 ];
             @endphp
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($mengapaYesl as [$title, $desc])
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                @foreach ($mengapaYesl as [$icon, $title, $desc])
                     <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-white/10 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="aspect-square overflow-hidden bg-slate-100 dark:bg-white/5">
-                            <img src="{{ asset('images/logo-yesl.png') }}" alt="{{ $title }}" loading="lazy"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="aspect-square flex items-center justify-center {{ $loop->even ? 'bg-secondary/10 text-secondary' : 'bg-primary/10 text-primary' }}">
+                            <i class="fa-solid {{ $icon }} text-7xl group-hover:scale-110 transition-transform duration-500"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-lg font-bold mb-2 leading-snug group-hover:text-primary transition-colors">{{ $title }}</h3>
