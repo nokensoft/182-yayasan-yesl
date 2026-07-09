@@ -14,7 +14,35 @@
 
         <div class="hidden md:flex items-center gap-7 font-medium text-slate-700 dark:text-slate-200">
             <a href="{{ route('home') }}" class="hover:text-primary transition">Beranda</a>
-            <a href="{{ route('home') }}#tentang" class="hover:text-primary transition">Tentang</a>
+            <div class="relative" x-data="{ dropdown: false }" @mouseenter="dropdown = true" @mouseleave="dropdown = false">
+                <button type="button" @click="dropdown = !dropdown" class="flex items-center gap-1.5 hover:text-primary transition">
+                    Tentang
+                    <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="dropdown && 'rotate-180'"></i>
+                </button>
+                <div x-show="dropdown" x-cloak
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 -translate-y-1"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 translate-y-0"
+                    x-transition:leave-end="opacity-0 -translate-y-1"
+                    class="absolute left-0 top-full pt-3 w-64">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-white/10 shadow-xl shadow-slate-900/5 p-2">
+                        <a href="{{ route('home') }}#tentang" @click="dropdown = false" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-500/10 hover:text-primary transition">
+                            <i class="fa-solid fa-circle-info w-5 text-center text-primary"></i> Tentang YESL
+                        </a>
+                        <a href="{{ route('home') }}#struktur" @click="dropdown = false" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-500/10 hover:text-primary transition">
+                            <i class="fa-solid fa-bullseye w-5 text-center text-primary"></i> Visi & Misi
+                        </a>
+                        <a href="{{ route('home') }}#nilai" @click="dropdown = false" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-500/10 hover:text-primary transition">
+                            <i class="fa-solid fa-leaf w-5 text-center text-primary"></i> Nilai Organisasi
+                        </a>
+                        <a href="{{ route('home') }}#program" @click="dropdown = false" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-500/10 hover:text-primary transition">
+                            <i class="fa-solid fa-diagram-project w-5 text-center text-primary"></i> Program
+                        </a>
+                    </div>
+                </div>
+            </div>
             <a href="{{ route('blog.index') }}" class="hover:text-primary transition {{ request()->routeIs('blog.*') ? 'text-primary' : '' }}">Blog</a>
             <a href="{{ route('gallery.index') }}" class="hover:text-primary transition {{ request()->routeIs('gallery.*') ? 'text-primary' : '' }}">Galeri</a>
             <a href="{{ route('home') }}#kontak" class="hover:text-primary transition">Kontak</a>
@@ -42,7 +70,18 @@
     <div x-show="open" x-cloak @click.away="open = false"
         class="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-white/10 p-6 space-y-3 shadow-xl">
         <a href="{{ route('home') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Beranda</a>
-        <a href="{{ route('home') }}#tentang" @click="open = false" class="block font-medium hover:text-primary py-1">Tentang</a>
+        <div x-data="{ sub: false }">
+            <button type="button" @click="sub = !sub" class="w-full flex items-center justify-between font-medium hover:text-primary py-1">
+                Tentang
+                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="sub && 'rotate-180'"></i>
+            </button>
+            <div x-show="sub" x-cloak x-transition class="mt-1 mb-1 ml-2 pl-3 border-l border-slate-200 dark:border-white/10 space-y-1">
+                <a href="{{ route('home') }}#tentang" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Tentang YESL</a>
+                <a href="{{ route('home') }}#struktur" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Visi & Misi</a>
+                <a href="{{ route('home') }}#nilai" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Nilai Organisasi</a>
+                <a href="{{ route('home') }}#program" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Program</a>
+            </div>
+        </div>
         <a href="{{ route('blog.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Blog</a>
         <a href="{{ route('gallery.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Galeri</a>
         <a href="{{ route('home') }}#kontak" @click="open = false" class="block font-medium hover:text-primary py-1">Kontak</a>

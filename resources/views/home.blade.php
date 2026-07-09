@@ -69,12 +69,12 @@
     </section>
 
     {{-- BLOG + KATEGORI (dinamis via API + Alpine) --}}
-    <section id="blog" class="py-20 px-6 bg-white dark:bg-slate-900"
+    <section id="blog" class="py-24 px-6 bg-white dark:bg-slate-900"
         x-data="blogSection()" x-init="init()">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
                 <div>
-                    <span class="inline-block px-4 py-1.5 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 rounded-full text-xs font-bold tracking-wide uppercase">Kabar Terbaru</span>
+                    <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Kabar Terbaru</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-3">Blog & Artikel YESL</h2>
                     <p class="text-slate-600 dark:text-slate-400 max-w-2xl">Cerita dari lapangan, catatan refleksi, dan perkembangan program pemberdayaan masyarakat adat serta pelestarian lingkungan.</p>
                 </div>
@@ -143,7 +143,9 @@
             
             {{-- Judul Besar Section --}}
             <div class="md:col-span-2 text-center max-w-3xl mx-auto mb-4">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Tentang <span class="text-primary">YESL</span></h2>
+                <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Profil Organisasi</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-4">Tentang <span class="text-primary">YESL</span></h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Mengenal lebih dekat jati diri, makna nama dan logo, serta komitmen YESL dalam mendampingi masyarakat adat di Tanah Papua.</p>
             </div>
 
             {{-- KOLOM KIRI: LOGO & INFORMASI DETIL (Arti nama, Logo, Program Kerja) --}}
@@ -165,11 +167,11 @@
                 {{-- Akordion Informasi Detil --}}
                 <div x-data="{ open: 1 }" class="space-y-3">
                     {{-- Arti Nama YESL --}}
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-white/10 overflow-hidden">
-                        <button type="button" @click="open = (open === 1 ? null : 1)" class="w-full flex items-center gap-3 p-4 text-left">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm overflow-hidden">
+                        <button type="button" @click="open = (open === 1 ? null : 1)" class="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                             <span class="w-11 h-11 bg-primary-50 dark:bg-primary-500/10 rounded-xl flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-seedling"></i></span>
                             <span class="font-bold flex-1">Arti Nama YESL</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform" :class="open === 1 && 'rotate-180'"></i>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" :class="open === 1 && 'rotate-180'"></i>
                         </button>
                         <div x-show="open === 1" x-transition class="px-4 pb-4">
                             <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Ekologi berarti relasi makhluk hidup dan lingkungannya, Sahul merujuk bentang biogeografi Australia-Papua, dan Lestari menegaskan komitmen menjaga keberlanjutan.</p>
@@ -177,11 +179,11 @@
                     </div>
 
                     {{-- Filosofi Logo --}}
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-white/10 overflow-hidden">
-                        <button type="button" @click="open = (open === 2 ? null : 2)" class="w-full flex items-center gap-3 p-4 text-left">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm overflow-hidden">
+                        <button type="button" @click="open = (open === 2 ? null : 2)" class="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                             <span class="w-11 h-11 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary shrink-0"><i class="fa-solid fa-shapes"></i></span>
                             <span class="font-bold flex-1">Filosofi Logo</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform" :class="open === 2 && 'rotate-180'"></i>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" :class="open === 2 && 'rotate-180'"></i>
                         </button>
                         <div x-show="open === 2" x-cloak x-transition class="px-4 pb-4">
                             <div class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-3">
@@ -192,46 +194,24 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Program Kerja --}}
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-white/10 overflow-hidden">
-                        <button type="button" @click="open = (open === 3 ? null : 3)" class="w-full flex items-center gap-3 p-4 text-left">
-                            <span class="w-11 h-11 bg-primary-50 dark:bg-primary-500/10 rounded-xl flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-diagram-project"></i></span>
-                            <span class="font-bold flex-1">Focus Program Kerja</span>
-                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform" :class="open === 3 && 'rotate-180'"></i>
-                        </button>
-                        <div x-show="open === 3" x-cloak x-transition class="px-4 pb-4">
-                            <ul class="space-y-3">
-                                @foreach ($programKerja as [$judul, $ket])
-                                    <li class="flex items-start gap-3">
-                                        <i class="fa-solid fa-circle-check text-primary mt-1 text-xs shrink-0"></i>
-                                        <div>
-                                            <p class="font-semibold text-sm">{{ $judul }}</p>
-                                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{{ $ket }}</p>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             {{-- KOLOM KANAN: DESKRIPSI YAYASAN --}}
             <div class="space-y-6 pt-2 md:pt-6">
-                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
                     <strong>Yayasan Ekologi Sahul Lestari (YESL)</strong> merupakan organisasi nirlaba yang hadir di Tanah Papua sejak tahun 2019 dan berkedudukan di Kabupaten Mimika Provinsi Papua Tengah. Memiliki misi melindungi kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan sebagai identitas jati diri dan sumber penghidupan secara berkelanjutan.
                 </p>
                     
-                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
                     Sejan terbentuk, Yayasan Ekologi Sahul Lestari telah bekerja sama dengan komunitas dan kelembagaan adat di wilayah Tanah Papua sebagai pemberi mandat dalam pendokumentasian bersama Profil Masyarakat Adat, baik sejarah, wilayah pengelolaan sumber daya alam dalam konteks Sumber penghidupan sehari-hari maupun sebagai identitas jati diri. Pendokumentian bersama terkait struktur dan kelembagaan adat, hukum adat, harta kekayaan adat, dan keanekaragaman hayati yang penting bagi pelestarian nilai budaya setempat. 
                 </p>
 
-                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
                     Hasil pendukumentasian Profil Masyarakat Adat ini kemudian diadvokasi menjadi arahan kebijakan regulasi, perencanaan dan program kegiatan bersama Masyarakat adat sebagai pemegang mandat dengan Dukungan kolaborasi mitra pembangunan baik pemerintah pusat dan daerah, mitra donor, mitra cso dan sektor swasta.
                 </p>
                     
-                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
                     Kami memberikan solusi inovatif untuk mewujudkan pembangunan berkelanjutan melalui tata kelola sumber daya alam yang efektif berbasis kearifan lokal, mengutamakan pendekatan kesetaraan gender, serta membangun kolaborasi bersama semua pihak demi masa depan yang lestari.
                 </p>
             </div>
@@ -250,48 +230,106 @@
 
 
 
-    {{-- VISI MISI --}}
-    <section id="struktur" class="py-24 px-6 bg-white dark:bg-slate-900">
-        <div class="max-w-3xl mx-auto text-center mb-14">
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Visi & Misi</h2>
-            <p class="text-slate-500 dark:text-slate-400">"Terwujudnya tata kelola sumber daya alam yang adil dan lestari bagi komunitas adat di Tanah Papua."</p>
+
+    {{-- SECTION VISI MISI --}}
+    <section id="struktur" class="relative py-24 px-6 overflow-hidden bg-white dark:bg-slate-900">
+        {{-- Dekorasi latar --}}
+        <div class="absolute top-0 -left-24 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 -right-24 w-72 h-72 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        {{-- Header Kontainer Visi --}}
+        <div class="relative z-10 max-w-5xl mx-auto text-center mb-16">
+            <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Arah Organisasi</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-4">Visi & Misi</h2>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">Landasan arah dan komitmen YESL dalam mewujudkan tata kelola sumber daya alam yang berkelanjutan, berkeadilan, dan kolaboratif di Tanah Papua.</p>
+            {{-- Visi Utama --}}
+            <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20 dark:via-primary/10 dark:to-transparent p-8 md:p-10 rounded-3xl border border-primary/15 max-w-3xl mx-auto mt-8 shadow-sm">
+                <i class="fa-solid fa-quote-left absolute -top-4 left-4 text-7xl text-primary/10 dark:text-primary/15 pointer-events-none select-none"></i>
+                <div class="relative">
+                    <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-3">
+                        <i class="fa-solid fa-eye"></i> Visi Kami
+                    </span>
+                    <p class="text-slate-700 dark:text-slate-200 text-lg md:text-xl font-medium leading-relaxed">
+                        Terwujudnya bentang alam yang lestari dan kemandirian masyarakat adat melalui tata kelola sumberdaya alam yang berkelanjutan, berkeadilan dan kolaboratif di Tanah Papua.
+                    </p>
+                </div>
+            </div>
         </div>
+
         @php
-            $visiMisi = [
-                ['fa-bullseye', 'Visi', 'Tata kelola sumber daya alam yang adil dan lestari bagi komunitas adat di Tanah Papua.'],
-                ['fa-list-check', 'Misi', 'Memperkuat kapasitas masyarakat adat, mendorong pengakuan hukum wilayah adat, serta mengembangkan ekonomi lokal berkelanjutan.'],
-                ['fa-location-dot', 'Lokasi', 'Berkedudukan di Kabupaten Mimika, Papua Tengah, bekerja bersama komunitas adat di berbagai wilayah Papua.'],
+            $misiPoin = [
+                'Melindungi dan mengelola bentang alam dan keanekaragaman hayati secara berkelanjutan.',
+                'Memperkuat kapasitas hak dan ketahanan masyarakat dalam mengelola sumber daya alam secara mandiri dan berkelanjutan.',
+                'Mengembangkan model pemberdayaan ekonomi yang inklusif dan berkelanjutan dalam meningkatkan kesejahteraan masyarakat adat.',
+                'Mendorong kolaborasi multi pihak dan kebijakan dalam mendukung perlindungan dan pengelolaan bentang alam dan pemberdayaan ekonomi berbasis masyarakat adat yang berkelanjutan.',
+                'Membangun organisasi yang profesional, akuntabel, inovatif dan berkelanjutan.'
             ];
         @endphp
-        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            @foreach ($visiMisi as [$icon, $title, $desc])
-                <div class="group bg-slate-50 dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-100 dark:border-white/10 hover:shadow-xl transition">
-                    <div class="w-14 h-14 bg-primary-50 dark:bg-primary-500/10 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 group-hover:scale-110 transition"><i class="fa-solid {{ $icon }}"></i></div>
-                    <h3 class="text-xl font-bold mb-2">{{ $title }}</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">{{ $desc }}</p>
+
+        {{-- Grid Misi & Wilayah Kerja --}}
+        <div class="relative z-10 grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
+            
+            {{-- Kolom Misi (2 Kolom) --}}
+            <div class="lg:col-span-2 bg-slate-50 dark:bg-slate-800/50 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-white/10 shadow-sm">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl shadow-inner shrink-0">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">Misi Yayasan</h3>
                 </div>
-            @endforeach
+                
+                <ul class="space-y-1">
+                    @foreach ($misiPoin as $index => $misi)
+                        <li class="group flex items-start gap-4 p-3 -mx-3 rounded-2xl hover:bg-white dark:hover:bg-white/5 transition-colors">
+                            <span class="w-8 h-8 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0 shadow-sm shadow-primary/30 group-hover:scale-110 transition-transform">
+                                {{ $index + 1 }}
+                            </span>
+                            <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed pt-0.5">{{ $misi }}</p>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            {{-- Kolom Lokasi (1 Kolom) --}}
+            <div class="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-200 dark:border-white/10 shadow-sm h-full flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary text-xl mb-6 shadow-inner">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Wilayah Kerja & Kedudukan</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                        Berkedudukan di Kabupaten Mimika, Provinsi Papua Tengah, serta bekerja bersama komunitas adat di berbagai wilayah bentang alam Tanah Papua.
+                    </p>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-slate-200/60 dark:border-white/5 text-xs text-slate-400 dark:text-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-building-flag text-primary"></i> Sekretariat Utama • Mimika
+                </div>
+            </div>
+
         </div>
     </section>
 
+
+
     {{-- NILAI --}}
     <section id="nilai" class="py-24 px-6 bg-slate-50 dark:bg-slate-950">
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12">
                 <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Nilai Inti</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold mt-4">Nilai-Nilai Organisasi</h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-4">Prinsip-prinsip utama yang memandu setiap langkah kerja dan pengambilan keputusan YESL bersama masyarakat adat.</p>
             </div>
             @php
                 $nilai = [
-                    ['Menghormati HAM', 'Mengutamakan nilai Hak Asasi Manusia dalam sikap, tindakan, dan pengambilan keputusan.'],
-                    ['Demokratis', 'Melibatkan konstituen secara aktif dan setara dalam proses keputusan kolektif.'],
-                    ['Keadilan Gender', 'Menjamin hak atas kehidupan dan lingkungan layak tanpa diskriminasi.'],
-                    ['Keadilan Generasi', 'Menjaga kesamaan hak antar generasi melalui perlibatan konstituen.'],
-                    ['Keadilan Ekologis', 'Memastikan akses manfaat sumber daya alam dan keragaman cara pengelolaan.'],
-                    ['Anti Kekerasan', 'Menolak segala bentuk praktik kekerasan oleh individu, kelompok, modal, maupun negara.'],
+                    ['Keberpihakan Masyarakat Adat', 'Menghormati, melindungi, dan memperjuangkan hak-hak serta kearifan lokal masyarakat adat.'],
+                    ['Kelestarian Bentang Alam', 'Menjaga keseimbangan ekosistem dan memastikan perlindungan lingkungan hidup yang berkelanjutan.'],
+                    ['Kolaboratif', 'Membangun kerja sama yang sinergis, inklusif, dan saling percaya dengan berbagai pihak.'],
+                    ['Integritas dan Akuntabilitas', 'Menjunjung tinggi kejujuran, etika kerja, dan tanggung jawab yang transparan dalam setiap tindakan.'],
+                    ['Pembelajaran dan Inovatif', 'Terus belajar, beradaptasi dengan perubahan, dan menciptakan solusi baru yang kreatif.'],
                 ];
             @endphp
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
                 @foreach ($nilai as [$title, $desc])
                     <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10">
                         <h4 class="font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-leaf text-primary text-sm"></i> {{ $title }}</h4>
@@ -302,8 +340,40 @@
         </div>
     </section>
 
+    {{-- PROGRAM PRIORITAS --}}
+    <section id="program" class="py-24 px-6 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl mx-auto text-center mb-14">
+                <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Program Prioritas</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-4">Empat Pilar Program Prioritas</h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Program prioritas YESL menjadi pilar utama dalam mewujudkan tata kelola sumber daya alam yang adil dan berkelanjutan di Tanah Papua. Keempat program ini saling terhubung untuk memperkuat pengetahuan, ekonomi, kapasitas, serta pembiayaan bagi masyarakat adat.</p>
+            </div>
+
+            @php
+                $programPrioritas = [
+                    ['fa-book-open', 'Kajian dan Pengelolaan Pengetahuan dan Media', 'Mendokumentasikan kearifan lokal serta mengelola data dan media sebagai basis advokasi kebijakan dan edukasi publik.'],
+                    ['fa-arrow-trend-up', 'Transformasi Ekonomi Masyarakat Adat', 'Mengembangkan model ekonomi berbasis potensi lokal yang inklusif, adil, dan menjaga kelestarian bentang alam.'],
+                    ['fa-people-group', 'Pemberdayaan Masyarakat Adat', 'Memperkuat kapasitas, hak, dan kelembagaan adat agar masyarakat mandiri mengelola wilayah dan sumber penghidupannya.'],
+                    ['fa-hand-holding-dollar', 'Pembiayaan Inovatif', 'Merancang skema pendanaan kreatif dan berkelanjutan untuk mendukung konservasi dan kesejahteraan masyarakat adat.'],
+                ];
+            @endphp
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach ($programPrioritas as [$icon, $title, $desc])
+                    <div class="group bg-slate-50 dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-inner {{ $loop->even ? 'bg-secondary/10 text-secondary' : 'bg-primary/10 text-primary' }}">
+                            <i class="fa-solid {{ $icon }}"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 leading-snug">{{ $title }}</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{{ $desc }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- GALERI (dinamis via API + Alpine) --}}
-    <section id="galeri" class="py-24 px-6 bg-white dark:bg-slate-900" x-data="gallerySection()" x-init="init()">
+    <section id="galeri" class="py-24 px-6 bg-slate-50 dark:bg-slate-950" x-data="gallerySection()" x-init="init()">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
                 <div>
@@ -327,7 +397,7 @@
 
             <div x-show="!loading && albums.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <template x-for="album in albums" :key="album.slug">
-                    <a :href="album.url" class="group bg-slate-50 dark:bg-slate-800/50 p-4 rounded-3xl border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                    <a :href="album.url" class="group bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                         <div class="aspect-[1.91/1] overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5">
                             <img :src="album.cover_image" :alt="album.title" x-show="album.cover_image" loading="lazy"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -345,11 +415,47 @@
         </div>
     </section>
 
+    {{-- MENGAPA YESL --}}
+    <section id="mengapa" class="py-24 px-6 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl mx-auto text-center mb-14">
+                <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Mengapa Kami</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 mb-4">Mengapa YESL?</h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Lima alasan utama yang menjadikan YESL mitra tepercaya dalam pelestarian ekologi dan penguatan masyarakat adat. Setiap prinsip mencerminkan cara kami bekerja bersama komunitas di Tanah Papua.</p>
+            </div>
+
+            @php
+                $mengapaYesl = [
+                    ['Dipimpin oleh Masyarakat Adat', 'Bekerja bersama dan dipimpin oleh masyarakat adat Papua.'],
+                    ['Berbasis Bentang Alam', 'Pendekatan bentang alam untuk perlindungan yang berkelanjutan.'],
+                    ['Berbasis Bukti', 'Keputusan berbasis data, riset, dan pengetahuan lokal.'],
+                    ['Kolaboratif', 'Berkolaborasi dengan pemerintah, komunitas, swasta, akademisi, dan donor.'],
+                    ['Akuntabel & Transparan', 'Tata kelola yang baik dan transparansi dalam setiap langkah kami.'],
+                ];
+            @endphp
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($mengapaYesl as [$title, $desc])
+                    <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-white/10 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="aspect-square overflow-hidden bg-slate-100 dark:bg-white/5">
+                            <img src="{{ asset('images/logo-yesl.png') }}" alt="{{ $title }}" loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2 leading-snug group-hover:text-primary transition-colors">{{ $title }}</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{{ $desc }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- DONASI --}}
     <section id="donasi" class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="relative h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <div class="relative h-64 sm:h-80 lg:h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                 <img src="{{ asset('images/pemetaan-profil-adat.jpg') }}" alt="Dukung Aksi Ekologi YESL" class="w-full h-full object-cover" loading="lazy">
             </div>
             <div>
@@ -365,10 +471,11 @@
     </section>
 
     {{-- CTA --}}
-    <section class="py-20 px-6 bg-slate-50 dark:bg-slate-950">
+    <section class="py-24 px-6 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-7xl mx-auto relative overflow-hidden bg-primary rounded-[2.5rem] p-12 md:p-16 text-center">
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
             <div class="relative z-10">
+                <span class="inline-block px-4 py-1.5 bg-white/15 border border-white/25 text-white rounded-full text-xs font-bold tracking-wide uppercase mb-5">Mari Bergabung</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-5">Siap Berkolaborasi untuk Tata Kelola SDA yang Adil?</h2>
                 <p class="text-primary-50 mb-8 max-w-xl mx-auto">Bersama YESL, mari memperkuat kapasitas masyarakat adat, perlindungan wilayah adat, dan ekonomi lokal berkelanjutan.</p>
                 <a href="#kontak" class="bg-white text-primary-700 px-8 py-3.5 rounded-2xl font-extrabold hover:bg-slate-100 transition shadow-xl">Hubungi YESL</a>
