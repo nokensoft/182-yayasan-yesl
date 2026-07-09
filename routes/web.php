@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 /*
 | Halaman publik
 */
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
-Route::get('/galeri/{album:slug}', [GalleryController::class, 'show'])->name('gallery.show');
-Route::get('/kebijakan-privasi', [PageController::class, 'privacy'])->name('pages.privacy');
-Route::get('/faq', [PageController::class, 'faq'])->name('pages.faq');
-Route::get('/peta-situs', [PageController::class, 'sitemap'])->name('pages.sitemap');
+Route::middleware('track.visitor')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
+    Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/galeri/{album:slug}', [GalleryController::class, 'show'])->name('gallery.show');
+    Route::get('/kebijakan-privasi', [PageController::class, 'privacy'])->name('pages.privacy');
+    Route::get('/faq', [PageController::class, 'faq'])->name('pages.faq');
+    Route::get('/peta-situs', [PageController::class, 'sitemap'])->name('pages.sitemap');
+});
+
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.xml');
 Route::get('/robots.txt', function () {
     $lines = [

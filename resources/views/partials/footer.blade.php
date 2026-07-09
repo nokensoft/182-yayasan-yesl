@@ -69,6 +69,30 @@
             </div>
         </div>
 
+        {{-- Visitor Counter (pengunjung unik berdasarkan IP) --}}
+        @php($stats = $visitorStats ?? ['today' => 0, 'week' => 0, 'month' => 0, 'year' => 0])
+        <div class="mb-10">
+            <h5 class="font-bold mb-5 uppercase tracking-widest text-xs text-slate-400 text-center md:text-left">
+                <i class="fa-solid fa-users text-primary mr-1"></i> Statistik Pengunjung
+            </h5>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                @foreach ([
+                    ['Hari Ini', 'today', 'fa-calendar-day'],
+                    ['Minggu Ini', 'week', 'fa-calendar-week'],
+                    ['Bulan Ini', 'month', 'fa-calendar-days'],
+                    ['Tahun Ini', 'year', 'fa-calendar'],
+                ] as [$label, $key, $icon])
+                    <div class="bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-100 dark:border-white/10 px-4 py-4 text-center">
+                        <i class="fa-solid {{ $icon }} text-primary text-lg mb-2"></i>
+                        <div class="text-2xl font-extrabold text-slate-800 dark:text-slate-100 leading-none">
+                            {{ number_format($stats[$key] ?? 0, 0, ',', '.') }}
+                        </div>
+                        <div class="text-xs text-slate-400 mt-1 font-medium">{{ $label }}</div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         <div class="border-t border-slate-100 dark:border-white/10 pt-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 
