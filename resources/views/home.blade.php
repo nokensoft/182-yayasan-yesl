@@ -135,23 +135,25 @@
         </div>
     </section>
 
+    
     {{-- TENTANG --}}
     <section id="tentang" class="relative py-24 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950">
         <div class="absolute inset-0 bg-grid-pattern pointer-events-none opacity-70"></div>
-        <div class="max-w-7xl mx-auto relative z-10 grid md:grid-cols-2 gap-x-14 gap-y-10 items-center">
-            <div class="md:col-span-2 text-center max-w-3xl mx-auto">
+        <div class="max-w-7xl mx-auto relative z-10 grid md:grid-cols-2 gap-x-14 gap-y-10 items-start">
+            
+            {{-- Judul Besar Section --}}
+            <div class="md:col-span-2 text-center max-w-3xl mx-auto mb-4">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Tentang <span class="text-primary">YESL</span></h2>
-                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
-                    Yayasan Ekologi Sahul Lestari (YESL) merupakan organisasi nirlaba yang hadir di Tanah Papua sejak 2019 dan berkedudukan di Kabupaten Mimika, Papua Tengah, dengan mandat memperkuat kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan.
-                </p>
             </div>
-            <div class="order-2 md:order-1">
+
+            {{-- KOLOM KIRI: LOGO & INFORMASI DETIL (Arti nama, Logo, Program Kerja) --}}
+            <div class="space-y-6">
+                {{-- Box Logo --}}
                 <div class="relative bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-white/10 p-10 md:p-16 flex items-center justify-center overflow-hidden">
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
                     <img src="{{ asset('images/logo-yesl.png') }}" alt="Logo Yayasan Ekologi Sahul Lestari (YESL)" class="relative w-full max-w-xs h-auto object-contain" loading="lazy">
                 </div>
-            </div>
-            <div class="order-1 md:order-2">
+
                 @php
                     $programKerja = [
                         ['Pemetaan Partisipatif Wilayah Adat', 'Mendampingi komunitas memetakan ruang darat dan perairan sebagai dasar pengakuan serta tata kelola wilayah adat.'],
@@ -159,6 +161,8 @@
                         ['Perhutanan Sosial & Konservasi Komunitas', 'Mendorong pengelolaan hutan desa serta pelibatan perempuan dan generasi muda dalam upaya konservasi.'],
                     ];
                 @endphp
+
+                {{-- Akordion Informasi Detil --}}
                 <div x-data="{ open: 1 }" class="space-y-3">
                     {{-- Arti Nama YESL --}}
                     <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-white/10 overflow-hidden">
@@ -180,7 +184,12 @@
                             <i class="fa-solid fa-chevron-down text-slate-400 transition-transform" :class="open === 2 && 'rotate-180'"></i>
                         </button>
                         <div x-show="open === 2" x-cloak x-transition class="px-4 pb-4">
-                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Putih melambangkan ketulusan, hijau mencerminkan keberlanjutan tanah dan manusia Papua, motif berdaun menunjukkan kekayaan alam, dan lingkaran menggambarkan Paparan Sahul.</p>
+                            <div class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-3">
+                                <p><strong>Dasar Warna Putih:</strong> Mencerminkan kasih yang tulus dan saling membangun kepercayaan untuk bekerja sama dalam membangun tanah Papua.</p>
+                                <p><strong>Warna Hijau:</strong> Memberikan makna keberlanjutan tanah dan Manusia Papua secara mandiri dan berkeadilan.</p>
+                                <p><strong>Gambar Pulau Papua & Corak Daun:</strong> Menggambarkan tingginya keanekaragaman bentang alam serta keanekaragaman hayati dan keberagaman sosial budaya wilayah adat yang ada di Tanah Papua.</p>
+                                <p><strong>Lingkaran yang Terputus:</strong> Mengartikan sejarah biogeografi pulau Papua yang terputus dari benua Australia, di mana dulunya merupakan satu kesatuan daratan yang disebut dengan Paparan Sahul.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -188,7 +197,7 @@
                     <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-white/10 overflow-hidden">
                         <button type="button" @click="open = (open === 3 ? null : 3)" class="w-full flex items-center gap-3 p-4 text-left">
                             <span class="w-11 h-11 bg-primary-50 dark:bg-primary-500/10 rounded-xl flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-diagram-project"></i></span>
-                            <span class="font-bold flex-1">Program Kerja</span>
+                            <span class="font-bold flex-1">Focus Program Kerja</span>
                             <i class="fa-solid fa-chevron-down text-slate-400 transition-transform" :class="open === 3 && 'rotate-180'"></i>
                         </button>
                         <div x-show="open === 3" x-cloak x-transition class="px-4 pb-4">
@@ -208,8 +217,27 @@
                 </div>
             </div>
 
+            {{-- KOLOM KANAN: DESKRIPSI YAYASAN --}}
+            <div class="space-y-6 pt-2 md:pt-6">
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                    <strong>Yayasan Ekologi Sahul Lestari (YESL)</strong> merupakan organisasi nirlaba yang hadir di Tanah Papua sejak tahun 2019 dan berkedudukan di Kabupaten Mimika Provinsi Papua Tengah. Memiliki misi melindungi kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan sebagai identitas jati diri dan sumber penghidupan secara berkelanjutan.
+                </p>
+                    
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                    Sejan terbentuk, Yayasan Ekologi Sahul Lestari telah bekerja sama dengan komunitas dan kelembagaan adat di wilayah Tanah Papua sebagai pemberi mandat dalam pendokumentasian bersama Profil Masyarakat Adat, baik sejarah, wilayah pengelolaan sumber daya alam dalam konteks Sumber penghidupan sehari-hari maupun sebagai identitas jati diri. Pendokumentian bersama terkait struktur dan kelembagaan adat, hukum adat, harta kekayaan adat, dan keanekaragaman hayati yang penting bagi pelestarian nilai budaya setempat. 
+                </p>
+
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                    Hasil pendukumentasian Profil Masyarakat Adat ini kemudian diadvokasi menjadi arahan kebijakan regulasi, perencanaan dan program kegiatan bersama Masyarakat adat sebagai pemegang mandat dengan Dukungan kolaborasi mitra pembangunan baik pemerintah pusat dan daerah, mitra donor, mitra cso dan sektor swasta.
+                </p>
+                    
+                <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify mb-3" style="text-align: justify;">
+                    Kami memberikan solusi inovatif untuk mewujudkan pembangunan berkelanjutan melalui tata kelola sumber daya alam yang efektif berbasis kearifan lokal, mengutamakan pendekatan kesetaraan gender, serta membangun kolaborasi bersama semua pihak demi masa depan yang lestari.
+                </p>
+            </div>
+
             {{-- Tombol aksi ke Visi & Misi dan Nilai Inti --}}
-            <div class="md:col-span-2 order-last flex flex-wrap justify-center gap-3 pt-2">
+            <div class="md:col-span-2 flex flex-wrap justify-center gap-3 pt-6 w-full">
                 <a href="#struktur" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-700 transition shadow-md shadow-primary/20">
                     <i class="fa-solid fa-bullseye"></i> Visi & Misi
                 </a>
@@ -219,6 +247,8 @@
             </div>
         </div>
     </section>
+
+
 
     {{-- VISI MISI --}}
     <section id="struktur" class="py-24 px-6 bg-white dark:bg-slate-900">
