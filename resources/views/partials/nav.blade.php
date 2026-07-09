@@ -40,6 +40,9 @@
                         <a href="{{ route('home') }}#program" @click="dropdown = false" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-500/10 hover:text-primary transition">
                             <i class="fa-solid fa-diagram-project w-5 text-center text-primary"></i> Program
                         </a>
+                        <a href="{{ route('home') }}#tim" @click="dropdown = false" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-500/10 hover:text-primary transition">
+                            <i class="fa-solid fa-user-group w-5 text-center text-primary"></i> Tim YSEL
+                        </a>
                     </div>
                 </div>
             </div>
@@ -80,6 +83,7 @@
                 <a href="{{ route('home') }}#struktur" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Visi & Misi</a>
                 <a href="{{ route('home') }}#nilai" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Nilai Organisasi</a>
                 <a href="{{ route('home') }}#program" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Program</a>
+                <a href="{{ route('home') }}#tim" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Tim YSEL</a>
             </div>
         </div>
         <a href="{{ route('blog.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Blog</a>
