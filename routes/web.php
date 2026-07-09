@@ -57,6 +57,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::name('dashboard.')->group(function () {
+        Route::view('docs', 'dashboard.docs')->name('docs');
+
         Route::get('posts/trash', [DashboardPostController::class, 'trash'])->name('posts.trash');
         Route::patch('posts/{id}/restore', [DashboardPostController::class, 'restore'])->name('posts.restore');
         Route::delete('posts/{id}/force', [DashboardPostController::class, 'forceDelete'])->name('posts.force-delete');

@@ -60,6 +60,10 @@
             @endif
 
             <div class="pt-4 mt-4 border-t border-slate-200 dark:border-white/10 space-y-1">
+                <a href="{{ route('dashboard.docs') }}"
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium transition {{ request()->routeIs('dashboard.docs') ? 'bg-primary text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5' }}">
+                    <i class="fa-solid fa-book w-5 text-center"></i> Dokumentasi
+                </a>
                 <a href="{{ route('dashboard.profile.edit') }}"
                     class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium transition {{ request()->routeIs('dashboard.profile.*') ? 'bg-primary text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5' }}">
                     <i class="fa-solid fa-user-gear w-5 text-center"></i> Profil
@@ -108,6 +112,8 @@
 
         <footer class="px-4 md:px-8 py-6 border-t border-slate-200 dark:border-white/10 text-center text-xs text-slate-400">
             &copy; {{ date('Y') }} {{ config('app.name') }} · Panel Admin
+            <span class="mx-1">·</span>
+            <a href="{{ route('dashboard.docs') }}" class="font-semibold text-slate-500 dark:text-slate-300 hover:text-primary transition"><i class="fa-solid fa-book"></i> Dokumentasi Sistem</a>
             <span class="mx-1">·</span>
             Powered by <a href="https://nokensoft.com" target="_blank" rel="noopener" class="font-semibold text-slate-500 dark:text-slate-300 hover:text-primary transition">Nokensoft.com</a>
         </footer>
