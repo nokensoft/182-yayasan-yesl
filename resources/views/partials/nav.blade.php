@@ -48,6 +48,7 @@
             </div>
             <a href="{{ route('blog.index') }}" class="hover:text-primary transition {{ request()->routeIs('blog.*') ? 'text-primary' : '' }}">Blog</a>
             <a href="{{ route('gallery.index') }}" class="hover:text-primary transition {{ request()->routeIs('gallery.*') ? 'text-primary' : '' }}">Galeri</a>
+            <a href="{{ route('home') }}#mitra" class="hover:text-primary transition">Mitra Kerja</a>
             <a href="{{ route('home') }}#kontak" class="hover:text-primary transition">Kontak</a>
 
             <button @click="$store.theme.toggle()" title="Ganti tema"
@@ -88,6 +89,7 @@
         </div>
         <a href="{{ route('blog.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Blog</a>
         <a href="{{ route('gallery.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Galeri</a>
+        <a href="{{ route('home') }}#mitra" @click="open = false" class="block font-medium hover:text-primary py-1">Mitra Kerja</a>
         <a href="{{ route('home') }}#kontak" @click="open = false" class="block font-medium hover:text-primary py-1">Kontak</a>
         <a href="{{ route('home') }}#donasi" @click="open = false"
             class="block bg-primary text-white text-center py-2.5 rounded-xl font-medium hover:bg-primary-700 transition">Donasi</a>
