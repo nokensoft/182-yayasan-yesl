@@ -11,8 +11,13 @@
                     Organisasi nirlaba yang bergerak di bidang pelestarian ekologi, perlindungan keanekaragaman hayati, dan penguatan hak-hak masyarakat adat di Tanah Papua.
                 </p>
                 <div class="flex gap-3">
-                    @foreach ([['instagram','fa-instagram'], ['facebook','fa-facebook-f'], ['youtube','fa-youtube'], ['whatsapp','fa-whatsapp']] as [$net, $icon])
-                        <a href="#" target="_blank" rel="noopener" title="{{ ucfirst($net) }}"
+                    @foreach ([
+                        ['instagram', 'fa-instagram', 'https://www.instagram.com/sahullestari/'],
+                        ['facebook', 'fa-facebook-f', 'https://www.facebook.com/sahullestari'],
+                        ['youtube', 'fa-youtube', 'https://www.youtube.com/@EkologiSahullestari'],
+                        ['whatsapp', 'fa-whatsapp', 'https://whatsapp.com/channel/0029Vb7u21MLikg8hoxIIH3I'],
+                    ] as [$net, $icon, $url])
+                        <a href="{{ $url }}" target="_blank" rel="noopener" title="{{ ucfirst($net) }}"
                             class="w-10 h-10 bg-slate-100 dark:bg-white/5 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition">
                             <i class="fa-brands {{ $icon }}"></i>
                         </a>
@@ -47,6 +52,20 @@
                         <a href="mailto:info@yesl.or.id" class="hover:text-primary transition">info@yesl.or.id</a>
                     </p>
                 </div>
+
+                {{-- Peta Lokasi Kantor --}}
+                <div class="mt-4 rounded-xl overflow-hidden border border-slate-100 dark:border-white/10">
+                    <iframe
+                        src="https://maps.google.com/maps?q=-4.5542456,136.8797735&hl=id&z=17&output=embed"
+                        width="100%" height="180" style="border:0;" allowfullscreen loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" title="Peta Lokasi Kantor YESL"
+                        class="w-full"></iframe>
+                </div>
+                <a href="https://maps.app.goo.gl/QU9p9jyo9B8FT1VP7" target="_blank" rel="noopener"
+                    class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Buka di Google Maps
+                </a>
             </div>
         </div>
 
