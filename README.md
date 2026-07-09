@@ -7,13 +7,19 @@ Dibangun dengan **Laravel 12** sebagai CMS ringan: beranda *one‑page* statis y
 ## Fitur Utama
 
 ### Publik
-- **Beranda one‑page statis** (hero, tentang, visi & misi, nilai organisasi, donasi, CTA) yang dipindah ke Blade; section **Blog, Kategori, dan Galeri dimuat dinamis via API + Alpine.js**.
+- **Beranda one‑page** (perpaduan konten statis Blade + dinamis) dengan section berurutan: hero, **statistik dampak**, blog, tentang (arti nama & **filosofi logo**), **visi & misi**, nilai organisasi, **program prioritas (4 pilar)**, galeri, **mengapa YESL**, **tim**, donasi, **mitra kerja**, dan CTA. Section **Blog, Kategori, dan Galeri dimuat dinamis via API + Alpine.js**.
+- **Statistik dampak** ringkas hingga 2024 (wilayah dampingan, penerima manfaat, komunitas adat, donor strategis, tahun pengalaman).
+- **Donasi**: ajakan berkontribusi dengan tombol WhatsApp dan panel **informasi rekening** (salin nomor rekening sekali klik).
+- **Profil tim**: pembina, pengawas, dan staf beserta perannya.
+- **Mitra kerja**: galeri **logo mitra & donor** (BRIN, EcoNusa, Pemkab Mimika, Konservasi Indonesia, Packard Foundation, The Asia Foundation, dll.).
 - **Blog & Artikel**: daftar + halaman detail, satu artikel bisa memiliki **banyak kategori** (many‑to‑many).
 - **Album/Galeri**: daftar + halaman detail dengan **lightbox** foto.
 - **Pencarian & filter** pada Blog dan Galeri: kata kunci, **filter A–Z**, **rentang tanggal publikasi**, dan **filter kategori**.
 - **Halaman detail ber‑SEO optimal**: meta unik, canonical, Open Graph & Twitter Card, dan **JSON‑LD** (Article / ImageGallery / BreadcrumbList).
 - **Halaman statis** (Blade): Kebijakan Privasi, FAQ (dengan akordeon), Peta Situs.
 - **`sitemap.xml`** & **`robots.txt`** dinamis.
+- **Footer informatif**: alamat kantor, **peta lokasi (Google Maps)**, tautan media sosial (Instagram, Facebook, YouTube, WhatsApp), dan badge terverifikasi **NGO Source**.
+- **Widget mengambang**: tombol kembali ke atas + akses cepat media sosial.
 - **Tema terang (hijau daun) + mode gelap** dengan toggle (disimpan di `localStorage`).
 - **Responsif** — seluruh fitur tetap tampil dan dapat diakses di perangkat mobile.
 
