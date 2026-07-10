@@ -148,4 +148,6 @@
             </div>
         </div>
     </section>
+
+    @include('partials.mitra-kerja')
 @endsection

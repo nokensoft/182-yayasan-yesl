@@ -58,4 +58,6 @@
             @endif
         </div>
     </section>
+
+    @include('partials.mari-berkontribusi')
 @endsection
