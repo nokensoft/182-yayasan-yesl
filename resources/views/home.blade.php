@@ -40,8 +40,8 @@
     </x-hero>
 
     {{-- DAMPAK KAMI — 5 box mengambang di antara Hero & Kabar Terbaru --}}
-    <section aria-labelledby="dampak-heading" class="relative z-20 px-6 -mt-20 md:-mt-28">
-        <div class="max-w-7xl mx-auto">
+    <section aria-labelledby="dampak-heading" class="relative z-20 px-6 py-1 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto -mt-20 md:-mt-28">
             <div class="text-center mb-8">
                 <span id="dampak-heading" class="inline-block px-4 py-1.5 bg-primary text-white rounded-full text-xs font-bold tracking-wide uppercase shadow-lg shadow-primary/30">Dampak Kami Hingga 2024</span>
             </div>

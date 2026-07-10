@@ -10,7 +10,7 @@
 
     // Auto-discover gambar dari folder public/images/hero-slider bila prop tidak diisi
     if ($slides->isEmpty()) {
-        $files = glob(public_path('images/hero-slider/*.{jpg,jpeg,png,webp,avif,gif}'), GLOB_BRACE) ?: [];
+        $files = glob(public_path('images/hero-slider/*.{png,jpg,jpeg,png,webp,avif,gif}'), GLOB_BRACE) ?: [];
         sort($files);
         $slides = collect($files)->map(fn ($f) => asset('images/hero-slider/' . basename($f)))->values();
     }
