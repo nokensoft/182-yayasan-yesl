@@ -48,9 +48,9 @@
                         <tr class="hover:bg-slate-50 dark:hover:bg-white/5">
                             <td class="px-5 py-3">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 rounded-lg overflow-hidden bg-slate-100 dark:bg-white/5 shrink-0">
+                                    <div class="w-16 rounded-lg overflow-hidden bg-slate-100 dark:bg-white/5 shrink-0">
                                         @if ($album->cover_image)
-                                            <img src="{{ asset($album->cover_image) }}" alt="" class="w-full h-full object-cover">
+                                            <img src="{{ asset($album->cover_image) }}" alt="" class="aspect-[3/2] object-cover">
                                         @endif
                                     </div>
                                     <span class="font-semibold">{{ $album->title }}</span>
