@@ -214,6 +214,78 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- Status Legalitas Organisasi --}}
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm overflow-hidden">
+                        <button type="button" @click="open = (open === 3 ? null : 3)" class="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                            <span class="w-11 h-11 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary shrink-0"><i class="fa-solid fa-scale-balanced"></i></span>
+                            <span class="font-bold flex-1">Status Legalitas Organisasi</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" :class="open === 2 && 'rotate-180'"></i>
+                        </button>
+                        <div x-show="open === 3" x-cloak x-transition class="px-4 pb-4">
+                            <div class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed overflow-x-auto">
+                                <table class="w-full min-w-[400px] border-collapse">
+                                    <tbody>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300 w-1/3">Nama</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400 font-bold">YAYASAN EKOLOGI SAHUL LESTARI</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">Alamat Sekretariat</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">Jln. Patimura Ujung, Kelurahan Pasar Sentral Distrik Mimika Baru Kabupaten Mimika Provinsi Papua Tengah</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">No. Telepon</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400 space-y-0.5">
+                                                <div>+62821-9977-8738 <span class="text-xs text-slate-400 dark:text-slate-500">(Kantor)</span></div>
+                                                <div>+62 813-4093-2910 <span class="text-xs text-slate-400 dark:text-slate-500">(Direktur)</span></div>
+                                                <div>+62 822-3868-2030 <span class="text-xs text-slate-400 dark:text-slate-500">(Sekretaris)</span></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">E-Mail</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">ekologisahullestari@gmail.com</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">No SIUP</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">510/2743-DPMPTSP/UM/2020</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">Nomor Induk Berusaha</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">0246000940676</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">Akta Notaris</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">Nomor 03 Tanggal 11 Agustus 2020</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">Akta Perubahan</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">Nomor 79 Tanggal 22 Desember 2025</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">Keputusan KEMENKUMHAM</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">Nomor AHU-0013911.AH.01.04. Tahun 2020</td>
+                                        </tr>
+                                        <tr class="align-top">
+                                            <td class="py-1.5 pr-4 font-semibold text-slate-700 dark:text-slate-300">Nomor Pajak</td>
+                                            <td class="py-1.5 px-2 text-slate-400">:</td>
+                                            <td class="py-1.5 text-slate-600 dark:text-slate-400">97.796.482.8.953.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

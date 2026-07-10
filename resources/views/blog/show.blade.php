@@ -68,7 +68,7 @@
 
             @if ($post->cover_image)
                 <img src="{{ asset($post->cover_image) }}" alt="{{ $post->title }}"
-                    class="w-full rounded-3xl shadow-lg mb-8 object-cover">
+                    class="aspect-[3/2] rounded-3xl shadow-lg mb-8 object-cover">
             @endif
 
             <div class="article-content text-slate-700 dark:text-slate-300">

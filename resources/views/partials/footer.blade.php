@@ -45,11 +45,15 @@
                 <div class="text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed space-y-2">
                     <p class="flex items-start gap-2">
                         <i class="fa-solid fa-location-dot text-primary mt-1"></i>
-                        <span>Kota Timika, Kabupaten Mimika,<br>Papua Tengah 99910</span>
+                        <span>Jln. Patimura Ujung, Kelurahan Pasar Sentral<br>Distrik Mimika Baru, Kabupaten Mimika,<br>Papua Tengah</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-primary"></i>
+                        <a href="tel:+6282199778738" class="hover:text-primary transition">+62 821-9977-8738</a>
                     </p>
                     <p class="flex items-center gap-2">
                         <i class="fa-solid fa-envelope text-primary"></i>
-                        <a href="mailto:info@yesl.or.id" class="hover:text-primary transition">info@yesl.or.id</a>
+                        <a href="mailto:ekologisahullestari@gmail.com" class="hover:text-primary transition">ekologisahullestari@gmail.com</a>
                     </p>
                 </div>
 

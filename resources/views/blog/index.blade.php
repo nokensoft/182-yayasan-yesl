@@ -25,10 +25,10 @@
                     @foreach ($posts as $post)
                         <a href="{{ route('blog.show', $post->slug) }}"
                             class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex flex-col">
-                            <div class="h-48 overflow-hidden bg-slate-100 dark:bg-white/5">
+                            <div class="aspect-[3/2] overflow-hidden bg-slate-100 dark:bg-white/5">
                                 @if ($post->cover_image)
                                     <img src="{{ asset($post->cover_image) }}" alt="{{ $post->title }}" loading="lazy"
-                                        class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                                        class="aspect-[3/2] object-cover group-hover:scale-105 transition-transform duration-500">
                                 @endif
                             </div>
                             <div class="p-5 flex flex-col flex-1">

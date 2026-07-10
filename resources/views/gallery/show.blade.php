@@ -72,7 +72,7 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     @foreach ($album->photos as $photo)
                         <button type="button" @click="openAt({{ $loop->index }})"
-                            class="group aspect-square overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5">
+                            class="group aspect-3/2 overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5">
                             <img src="{{ asset($photo->image_path) }}" alt="{{ $photo->caption ?: $album->title }}" loading="lazy"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </button>

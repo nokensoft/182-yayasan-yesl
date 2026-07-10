@@ -25,7 +25,7 @@
                     @foreach ($albums as $album)
                         <a href="{{ route('gallery.show', $album->slug) }}"
                             class="group bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                            <div class="aspect-[1.91/1] overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5">
+                            <div class="aspect-[3/2] overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5">
                                 @if ($album->cover_image)
                                     <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" loading="lazy"
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
