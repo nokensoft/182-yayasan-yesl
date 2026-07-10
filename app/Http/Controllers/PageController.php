@@ -18,6 +18,11 @@ class PageController extends Controller
         return view('pages.faq');
     }
 
+    public function programBerjalan(): View
+    {
+        return view('pages.program-berjalan');
+    }
+
     public function sitemap(): View
     {
         $posts = Post::published()->latest('published_at')->get(['title', 'slug', 'published_at']);

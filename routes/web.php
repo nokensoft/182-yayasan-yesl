@@ -27,6 +27,7 @@ Route::middleware('track.visitor')->group(function () {
     Route::get('/galeri/{album:slug}', [GalleryController::class, 'show'])->name('gallery.show');
     Route::get('/kebijakan-privasi', [PageController::class, 'privacy'])->name('pages.privacy');
     Route::get('/faq', [PageController::class, 'faq'])->name('pages.faq');
+    Route::get('/program-berjalan', [PageController::class, 'programBerjalan'])->name('pages.program');
     Route::get('/peta-situs', [PageController::class, 'sitemap'])->name('pages.sitemap');
 });
 

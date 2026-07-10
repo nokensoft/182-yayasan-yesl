@@ -461,6 +461,13 @@
                     </div>
                 @endforeach
             </div>
+
+            <div class="mt-12 text-center">
+                <a href="{{ route('pages.program') }}"
+                    class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-primary text-white font-bold hover:bg-primary-700 transition shadow-md shadow-primary/20">
+                    Lihat Perjalanan Program Kami <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
         </div>
     </section>
 

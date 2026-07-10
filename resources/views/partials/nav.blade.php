@@ -46,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('pages.program') }}" class="hover:text-primary transition {{ request()->routeIs('pages.program') ? 'text-primary' : '' }}">Program Berjalan</a>
             <a href="{{ route('blog.index') }}" class="hover:text-primary transition {{ request()->routeIs('blog.*') ? 'text-primary' : '' }}">Blog</a>
             <a href="{{ route('gallery.index') }}" class="hover:text-primary transition {{ request()->routeIs('gallery.*') ? 'text-primary' : '' }}">Galeri</a>
             <a href="{{ route('home') }}#mitra" class="hover:text-primary transition">Mitra Kerja</a>
@@ -87,6 +88,7 @@
                 <a href="{{ route('home') }}#tim" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Tim YSEL</a>
             </div>
         </div>
+        <a href="{{ route('pages.program') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Program Berjalan</a>
         <a href="{{ route('blog.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Blog</a>
         <a href="{{ route('gallery.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Galeri</a>
         <a href="{{ route('home') }}#mitra" @click="open = false" class="block font-medium hover:text-primary py-1">Mitra Kerja</a>
