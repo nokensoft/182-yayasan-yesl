@@ -398,12 +398,14 @@
 
 
     {{-- NILAI --}}
-    <section id="nilai" class="py-24 px-6 bg-slate-50 dark:bg-slate-950">
-        <div class="max-w-5xl mx-auto">
+    <section id="nilai" class="relative py-24 bg-slate-50 dark:bg-slate-950 bg-fixed bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/bg1.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        {{-- Overlay gelap --}}
+        <div class="absolute inset-0 bg-slate-900/60 dark:bg-slate-900/70 pointer-events-none"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-6">
             <div class="text-center mb-12">
                 <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Nilai Inti</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold mt-4">Nilai-Nilai Organisasi</h2>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto mt-4">Prinsip-prinsip utama yang memandu setiap langkah kerja dan pengambilan keputusan YESL bersama masyarakat adat.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-4 text-white">Nilai-Nilai Organisasi</h2>
+                <p class="text-slate-200 leading-relaxed max-w-2xl mx-auto mt-4">Prinsip-prinsip utama yang memandu setiap langkah kerja dan pengambilan keputusan YESL bersama masyarakat adat.</p>
             </div>
             @php
                 $nilai = [
@@ -436,28 +438,36 @@
 
             @php
                 $programPrioritas = [
-                    ['fa-book-open', 'Kajian dan Pengelolaan Pengetahuan dan Media', 'Mendokumentasikan kearifan lokal serta mengelola data dan media sebagai basis advokasi kebijakan dan edukasi publik.'],
-                    ['fa-arrow-trend-up', 'Transformasi Ekonomi Masyarakat Adat', 'Mengembangkan model ekonomi berbasis potensi lokal yang inklusif, adil, dan menjaga kelestarian bentang alam.'],
-                    ['fa-people-group', 'Pemberdayaan Masyarakat Adat', 'Memperkuat kapasitas, hak, dan kelembagaan adat agar masyarakat mandiri mengelola wilayah dan sumber penghidupannya.'],
-                    ['fa-hand-holding-dollar', 'Pembiayaan Inovatif', 'Merancang skema pendanaan kreatif dan berkelanjutan untuk mendukung konservasi dan kesejahteraan masyarakat adat.'],
+                    ['fa-book-open', 'Kajian dan Pengelolaan Pengetahuan dan Media', 'Mendokumentasikan kearifan lokal serta mengelola data dan media sebagai basis advokasi kebijakan dan edukasi publik.', 'images/proram-prioritas/kajian-media.jpg'],
+                    ['fa-arrow-trend-up', 'Transformasi Ekonomi Masyarakat Adat', 'Mengembangkan model ekonomi berbasis potensi lokal yang inklusif, adil, dan menjaga kelestarian bentang alam.', 'images/proram-prioritas/transformasi-ekonomi.jpg'],
+                    ['fa-people-group', 'Pemberdayaan Masyarakat Adat', 'Memperkuat kapasitas, hak, dan kelembagaan adat agar masyarakat mandiri mengelola wilayah dan sumber penghidupannya.', 'images/proram-prioritas/masyarakat-adat.jpg'],
+                    ['fa-hand-holding-dollar', 'Pembiayaan Inovatif', 'Merancang skema pendanaan kreatif dan berkelanjutan untuk mendukung konservasi dan kesejahteraan masyarakat adat.', 'images/proram-prioritas/pembiayaan-inovatif.jpg'],
                 ];
             @endphp
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach ($programPrioritas as [$icon, $title, $desc])
-                    <div class="group bg-slate-50 dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-inner {{ $loop->even ? 'bg-secondary/10 text-secondary' : 'bg-primary/10 text-primary' }}">
-                            <i class="fa-solid {{ $icon }}"></i>
+                @foreach ($programPrioritas as [$icon, $title, $desc, $image])
+                    <div class="group relative overflow-hidden p-8 rounded-3xl border border-slate-200 dark:border-white/10 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        {{-- Gambar background --}}
+                        <img src="{{ asset($image) }}" alt="{{ $title }}" loading="lazy"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        {{-- Overlay gelap --}}
+                        <div class="absolute inset-0 bg-slate-900/70 group-hover:bg-slate-900/60 transition-colors duration-500"></div>
+                        {{-- Konten --}}
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-inner {{ $loop->even ? 'bg-secondary/10 text-secondary' : 'bg-primary/10 text-primary' }}">
+                                <i class="fa-solid {{ $icon }}"></i>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 leading-snug text-white">{{ $title }}</h3>
+                            <p class="text-sm text-slate-200 leading-relaxed">{{ $desc }}</p>
                         </div>
-                        <h3 class="text-lg font-bold mb-2 leading-snug">{{ $title }}</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{{ $desc }}</p>
                     </div>
                 @endforeach
             </div>
 
             <div class="mt-12 text-center">
                 <a href="{{ route('pages.program') }}"
-                    class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-primary text-white font-bold hover:bg-primary-700 transition shadow-md shadow-primary/20">
+                    class="inline-flex items-center gap-2 px-7 py-3.5 mt-6 rounded-2xl bg-primary text-white font-bold hover:bg-primary-700 transition shadow-md shadow-primary/20">
                     Lihat Perjalanan Program Kami <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
@@ -518,21 +528,29 @@
 
             @php
                 $mengapaYesl = [
-                    ['fa-users', 'Dipimpin oleh Masyarakat Adat', 'Bekerja bersama dan dipimpin oleh masyarakat adat Papua.'],
-                    ['fa-mountain-sun', 'Berbasis Bentang Alam', 'Pendekatan bentang alam untuk perlindungan yang berkelanjutan.'],
-                    ['fa-magnifying-glass-chart', 'Berbasis Bukti', 'Keputusan berbasis data, riset, dan pengetahuan lokal.'],
-                    ['fa-handshake', 'Kolaboratif', 'Berkolaborasi dengan pemerintah, komunitas, swasta, akademisi, dan donor.'],
-                    ['fa-scale-balanced', 'Akuntabel & Transparan', 'Tata kelola yang baik dan transparansi dalam setiap langkah kami.'],
+                    ['fa-users', 'Dipimpin oleh Masyarakat Adat', 'Bekerja bersama dan dipimpin oleh masyarakat adat Papua.', 'images/mengapa-yesl/dipimpin-oleh-masyarakat-adat.jpg'],
+                    ['fa-mountain-sun', 'Berbasis Bentang Alam', 'Pendekatan bentang alam untuk perlindungan yang berkelanjutan.', 'images/mengapa-yesl/berbasis-bentangan-alam.jpg'],
+                    ['fa-magnifying-glass-chart', 'Berbasis Bukti', 'Keputusan berbasis data, riset, dan pengetahuan lokal.', 'images/mengapa-yesl/berbasis-bukti.jpg'],
+                    ['fa-handshake', 'Kolaboratif', 'Berkolaborasi dengan pemerintah, komunitas, swasta, akademisi, dan donor.', 'images/mengapa-yesl/kolaboratif.jpg'],
+                    ['fa-scale-balanced', 'Akuntabel & Transparan', 'Tata kelola yang baik dan transparansi dalam setiap langkah kami.', 'images/mengapa-yesl/akuntabel-transparant.jpg'],
                 ];
             @endphp
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                @foreach ($mengapaYesl as [$icon, $title, $desc])
+                @foreach ($mengapaYesl as [$icon, $title, $desc, $image])
                     <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-white/10 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                        <div class="aspect-square flex items-center justify-center {{ $loop->even ? 'bg-secondary/10 text-secondary' : 'bg-primary/10 text-primary' }}">
-                            <i class="fa-solid {{ $icon }} text-7xl group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="relative aspect-square flex items-center justify-center overflow-hidden">
+                            {{-- Gambar background --}}
+                            <img src="{{ asset($image) }}" alt="{{ $title }}" loading="lazy"
+                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            {{-- Overlay gelap --}}
+                            <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/50 transition-colors duration-500"></div>
+                            {{-- Icon berwarna --}}
+                            <div class="relative z-10 w-20 h-20 rounded-2xl flex items-center justify-center text-4xl shadow-inner backdrop-blur-sm group-hover:scale-110 transition-transform duration-500 {{ $loop->even ? 'bg-secondary/20 text-secondary' : 'bg-primary/20 text-primary' }}">
+                                <i class="fa-solid {{ $icon }}"></i>
+                            </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 text-center">
                             <h3 class="text-lg font-bold mb-2 leading-snug group-hover:text-primary transition-colors">{{ $title }}</h3>
                             <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{{ $desc }}</p>
                         </div>
@@ -611,7 +629,9 @@
 
     {{-- CTA --}}
     <section class="py-24 px-6 bg-slate-50 dark:bg-slate-950">
-        <div class="max-w-7xl mx-auto relative overflow-hidden bg-primary rounded-[2.5rem] p-12 md:p-16 text-center">
+        <div class="max-w-7xl mx-auto relative overflow-hidden bg-primary rounded-[2.5rem] p-12 md:p-16 text-center bg-fixed bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/bg2.jpg') }}');">
+            {{-- Overlay warna primer agar teks tetap terbaca --}}
+            <div class="absolute inset-0 bg-primary/80 pointer-events-none"></div>
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
             <div class="relative z-10">
                 <span class="inline-block px-4 py-1.5 bg-white/15 border border-white/25 text-white rounded-full text-xs font-bold tracking-wide uppercase mb-5">Mari Bergabung</span>
