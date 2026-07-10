@@ -103,8 +103,8 @@
             @if ($album->photos->count())
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                     @foreach ($album->photos as $photo)
-                        <div class="relative group aspect-square rounded-xl overflow-hidden border border-slate-200 dark:border-white/10">
-                            <img src="{{ asset($photo->image_path) }}" alt="{{ $photo->caption }}" class="w-full h-full object-cover">
+                        <div class="relative group aspect-[3/2] rounded-xl overflow-hidden border border-slate-200 dark:border-white/10">
+                            <img src="{{ asset($photo->image_path) }}" alt="{{ $photo->caption }}" class="aspect-[3/2] object-cover">
                             <form method="POST" action="{{ route('dashboard.albums.photos.destroy', [$album, $photo]) }}"
                                 class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition">
                                 @csrf @method('DELETE')
