@@ -177,6 +177,7 @@
 
                 {{-- Akordion Informasi Detil --}}
                 <div x-data="{ open: 1 }" class="space-y-3">
+
                     {{-- Arti Nama YESL --}}
                     <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm overflow-hidden">
                         <button type="button" @click="open = (open === 1 ? null : 1)" class="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
@@ -185,9 +186,17 @@
                             <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" :class="open === 1 && 'rotate-180'"></i>
                         </button>
                         <div x-show="open === 1" x-transition class="px-4 pb-4">
-                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Ekologi berarti relasi makhluk hidup dan lingkungannya, Sahul merujuk bentang biogeografi Australia-Papua, dan Lestari menegaskan komitmen menjaga keberlanjutan.</p>
+                            <div class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-3">
+                                <p><strong>Ekologi</strong> mencerminkan interaksi harmonis antara makhluk hidup dengan sesamanya serta lingkungan sekitar. </p>
+                                <p><strong>Sahul</strong> merujuk pada landas kontinen yang menghubungkan Papua dan Australia, melambangkan ruang geografis yang kaya.  </p>
+                                <p><strong>Lestari</strong> menegaskan komitmen untuk menjaga segala kebaikan ini tetap bertahan, kekal, dan tidak berubah demi masa depan. </p>
+                                <p>
+                                    <img src="{{ asset('images/map-ekologi-sahul-lestari.png') }}" />
+                                </p>
+                            </div>
                         </div>
                     </div>
+
 
                     {{-- Filosofi Logo --}}
                     <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm overflow-hidden">
