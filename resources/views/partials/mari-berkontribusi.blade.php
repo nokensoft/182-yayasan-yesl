@@ -3,7 +3,7 @@
     <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="relative h-64 sm:h-80 lg:h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img src="{{ asset('images/pemetaan-profil-adat.jpg') }}" alt="Dukung Aksi Ekologi YESL" class="w-full h-full object-cover" loading="lazy">
+            <img src="{{ asset('images/ilustrasi-donasi.jpg') }}" alt="Dukung Aksi Ekologi YESL" class="w-full h-full object-cover" loading="lazy">
         </div>
         <div x-data="{ showRekening: false, copied: false }">
             <span class="inline-block px-3.5 py-1.5 bg-primary-500/20 border border-primary-400/30 text-primary-300 rounded-full text-xs font-bold tracking-wider uppercase mb-4">Mari Berkontribusi</span>

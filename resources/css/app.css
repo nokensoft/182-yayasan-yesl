@@ -59,6 +59,32 @@ html {
     background-size: 32px 32px;
 }
 
+/* Hero slider — efek Ken Burns (zoom in / zoom out bergantian) */
+@keyframes hero-zoom-in {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+@keyframes hero-zoom-out {
+    from { transform: scale(1.15); }
+    to { transform: scale(1); }
+}
+
+.hero-zoom-in {
+    animation: hero-zoom-in 7s ease-out forwards;
+}
+
+.hero-zoom-out {
+    animation: hero-zoom-out 7s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-zoom-in,
+    .hero-zoom-out {
+        animation: none;
+    }
+}
+
 a[href],
 button,
 [role="button"] {
