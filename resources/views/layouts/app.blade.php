@@ -63,6 +63,19 @@
 
     @include('partials.footer')
 
+    {{-- Google Translate (custom) — widget disembunyikan, dikontrol via toggle ID/EN di navbar --}}
+    <div id="google_translate_element" class="hidden" aria-hidden="true"></div>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'id,en',
+                autoDisplay: false,
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>

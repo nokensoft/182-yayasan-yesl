@@ -15,6 +15,29 @@ document.addEventListener('alpine:init', () => {
         },
     });
 
+    // Terjemahan bahasa via Google Translate (custom, cookie `googtrans`)
+    Alpine.store('lang', {
+        current: 'id',
+        init() {
+            const m = document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]+\/([^;]+)/);
+            this.current = m && m[1] === 'en' ? 'en' : 'id';
+        },
+        set(lang) {
+            if (lang !== 'id' && lang !== 'en') return;
+            if (lang === this.current) return;
+            const value = '/id/' + lang;
+            const host = location.hostname;
+            const cookies = [
+                'googtrans=' + value + ';path=/',
+                'googtrans=' + value + ';path=/;domain=' + host,
+                'googtrans=' + value + ';path=/;domain=.' + host,
+            ];
+            cookies.forEach((c) => { document.cookie = c; });
+            this.current = lang;
+            location.reload();
+        },
+    });
+
     Alpine.data('coverUploader', (existing = null) => ({
         preview: existing,
         dragging: false,

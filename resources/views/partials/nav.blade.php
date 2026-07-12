@@ -46,16 +46,25 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('pages.program') }}" class="hover:text-primary transition {{ request()->routeIs('pages.program') ? 'text-primary' : '' }}">Program Berjalan</a>
+            <a href="{{ route('pages.program') }}" class="hover:text-primary transition {{ request()->routeIs('pages.program') ? 'text-primary' : '' }}">Perjalanan Program</a>
             <a href="{{ route('blog.index') }}" class="hover:text-primary transition {{ request()->routeIs('blog.*') ? 'text-primary' : '' }}">Blog</a>
             <a href="{{ route('gallery.index') }}" class="hover:text-primary transition {{ request()->routeIs('gallery.*') ? 'text-primary' : '' }}">Galeri</a>
-            <a href="{{ route('home') }}#mitra" class="hover:text-primary transition">Mitra Kerja</a>
+            <a href="{{ route('home') }}#mitra" class="hover:text-primary transition">Mitra</a>
             <a href="{{ route('home') }}#kontak" class="hover:text-primary transition">Kontak</a>
 
             <button @click="$store.theme.toggle()" title="Ganti tema"
                 class="w-9 h-9 rounded-full grid place-items-center text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-white/10 transition">
                 <i class="fa-solid" :class="$store.theme.dark ? 'fa-sun' : 'fa-moon'"></i>
             </button>
+
+            <div class="notranslate flex items-center rounded-full border border-slate-300 dark:border-white/15 overflow-hidden text-xs font-bold" translate="no" title="Pilih bahasa">
+                <button type="button" @click="$store.lang.set('id')"
+                    :class="$store.lang.current === 'id' ? 'bg-primary text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-white/10'"
+                    class="px-2.5 py-1.5 leading-none transition">ID</button>
+                <button type="button" @click="$store.lang.set('en')"
+                    :class="$store.lang.current === 'en' ? 'bg-primary text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-white/10'"
+                    class="px-2.5 py-1.5 leading-none transition">EN</button>
+            </div>
 
             <a href="{{ route('home') }}#donasi"
                 class="bg-primary text-white px-5 py-2 rounded-full hover:bg-primary-700 transition shadow-md shadow-primary/20">Donasi</a>
@@ -66,6 +75,15 @@
                 class="w-9 h-9 rounded-full grid place-items-center text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-white/10 transition">
                 <i class="fa-solid" :class="$store.theme.dark ? 'fa-sun' : 'fa-moon'"></i>
             </button>
+
+            <div class="notranslate flex items-center rounded-full border border-slate-300 dark:border-white/15 overflow-hidden text-xs font-bold" translate="no" title="Pilih bahasa">
+                <button type="button" @click="$store.lang.set('id')"
+                    :class="$store.lang.current === 'id' ? 'bg-primary text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-white/10'"
+                    class="px-2.5 py-1.5 leading-none transition">ID</button>
+                <button type="button" @click="$store.lang.set('en')"
+                    :class="$store.lang.current === 'en' ? 'bg-primary text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-white/10'"
+                    class="px-2.5 py-1.5 leading-none transition">EN</button>
+            </div>
             <button @click="open = !open" class="text-2xl text-primary focus:outline-none w-9 h-9 grid place-items-center">
                 <i class="fa-solid" :class="open ? 'fa-xmark' : 'fa-bars'"></i>
             </button>
@@ -88,10 +106,10 @@
                 <a href="{{ route('home') }}#tim" @click="open = false" class="block text-sm text-slate-600 dark:text-slate-300 hover:text-primary py-1.5">Tim YSEL</a>
             </div>
         </div>
-        <a href="{{ route('pages.program') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Program Berjalan</a>
+        <a href="{{ route('pages.program') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Perjalanan Program</a>
         <a href="{{ route('blog.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Blog</a>
         <a href="{{ route('gallery.index') }}" @click="open = false" class="block font-medium hover:text-primary py-1">Galeri</a>
-        <a href="{{ route('home') }}#mitra" @click="open = false" class="block font-medium hover:text-primary py-1">Mitra Kerja</a>
+        <a href="{{ route('home') }}#mitra" @click="open = false" class="block font-medium hover:text-primary py-1">Mitra</a>
         <a href="{{ route('home') }}#kontak" @click="open = false" class="block font-medium hover:text-primary py-1">Kontak</a>
         <a href="{{ route('home') }}#donasi" @click="open = false"
             class="block bg-primary text-white text-center py-2.5 rounded-xl font-medium hover:bg-primary-700 transition">Donasi</a>
