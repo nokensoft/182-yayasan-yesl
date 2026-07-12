@@ -108,9 +108,53 @@ Dibuat oleh seeder — **segera ganti kata sandi setelah login pertama**.
 - `posts` ⇄ `categories` (pivot `category_post`)
 - `albums` ⇄ `categories` (pivot `album_category`) ; `albums` → `photos`
 
+## Halaman & Section Statis vs Dinamis (CMS)
+
+Situs ini menggabungkan **konten statis** (dikodekan dalam Blade, hanya bisa diubah oleh developer)
+dan **konten dinamis** (dikelola melalui dashboard CMS).
+
+### Konten Statis — Hanya bisa diubah dengan coding
+
+Bagian-bagian berikut dikodekan langsung dalam file Blade. Perubahan memerlukan akses ke kode sumber
+dan deploy ulang.
+
+| Section / Halaman | File Blade | Keterangan |
+|---|---|---|
+| **Hero** | `resources/views/home.blade.php` | Judul utama, tagline, deskripsi YESL, teks & tautan 2 tombol CTA. Gambar slider di `components/hero.blade.php` |
+| **Statistik Dampak** | `resources/views/partials/dampak.blade.php` | 5 kotak angka: Wilayah Dampingan (114.941 Ha), Penerima Manfaat (3.843), Komunitas Adat (9), Donor Strategis (5), Tahun Pengalaman (5) |
+| **Tentang YESL** | `resources/views/partials/tentang.blade.php` | Logo, 4 paragraf profil organisasi, akordeon Arti Nama, Filosofi Logo, dan tabel Status Legalitas (NIB, SIUP, akta notaris, KEMENKUMHAM, NPWP, alamat, kontak) |
+| **Visi & Misi** | `resources/views/partials/visi-misi.blade.php` | Teks visi, 5 poin misi, wilayah kerja & kedudukan |
+| **Nilai Organisasi** | `resources/views/partials/nilai.blade.php` | 5 nilai inti beserta deskripsi |
+| **Program Prioritas** | `resources/views/partials/program.blade.php` | 4 pilar (Kajian & Pengetahuan, Transformasi Ekonomi, Pemberdayaan Masyarakat, Pembiayaan Inovatif). Gambar di `public/images/proram-prioritas/` |
+| **Mengapa YESL** | `resources/views/partials/mengapa.blade.php` | 5 alasan. Foto di `public/images/mengapa-yesl/` |
+| **Tim YESL** | `resources/views/partials/tim.blade.php` | Nama, jabatan, dan foto tim (Pembina, Pengawas, Staf). Foto di `public/images/team/` |
+| **Donasi / Berkontribusi** | `resources/views/partials/mari-berkontribusi.blade.php` | Nomor WA (`62811490000`), rekening BRI a.n. EKOLOGI SAHUL LESTARI No. `056101002563303` Cabang Timika |
+| **Mitra Kerja** | `resources/views/partials/mitra-kerja.blade.php` | 7 logo mitra (BRIN, EcoNusa, Pemkab Mimika, dll.). Logo di `public/images/patners/` |
+| **CTA** | `resources/views/partials/cta.blade.php` | Banner ajakan kolaborasi di akhir beranda |
+| **Navigasi** | `resources/views/partials/nav.blade.php` | Menu header, logo, toggle dark-mode |
+| **Footer** | `resources/views/partials/footer.blade.php` | Alamat kantor, peta Google Maps, media sosial, badge NGO Source |
+| **Kebijakan Privasi** | `resources/views/pages/privacy.blade.php` | URL: `/kebijakan-privasi` |
+| **FAQ** | `resources/views/pages/faq.blade.php` | URL: `/faq` |
+| **Program Berjalan** | `resources/views/pages/program-berjalan.blade.php` | URL: `/program-berjalan` |
+| **Peta Situs** | `resources/views/pages/sitemap.blade.php` | URL: `/peta-situs` |
+
+### Konten Dinamis — Dikelola lewat Dashboard CMS (`/dashboard`)
+
+| Modul | URL Dashboard | Tampil di |
+|---|---|---|
+| **Blog / Artikel** | `/dashboard/posts` | `/blog`, `/blog/{slug}`, section Blog beranda |
+| **Kategori** | `/dashboard/categories` | Filter blog & galeri |
+| **Album & Galeri** | `/dashboard/albums` | `/galeri`, `/galeri/{slug}`, section Galeri beranda |
+| **Pengguna** *(admin only)* | `/dashboard/users` | — |
+
+> **Catatan:** Section Blog dan Galeri di beranda memuat data secara dinamis via API + Alpine.js
+> (`/api/posts`, `/api/albums`, `/api/categories`). Teks header section-nya tetap statis di file Blade.
+
 ## Struktur Penting
 
 - `resources/views/` — layout, beranda, blog, galeri, halaman statis, dan dashboard
+- `resources/views/partials/` — section-section beranda statis (hero, dampak, tentang, dll.)
+- `resources/views/pages/` — halaman statis tambahan (FAQ, privasi, program, peta situs)
 - `resources/css/app.css` — tema Tailwind (skala warna hijau daun + varian dark)
 - `app/Http/Controllers/` — controller publik, `Api/`, dan `Dashboard/`
 - `bin/copy-tinymce.mjs` — menyalin TinyMCE ke `public/tinymce`

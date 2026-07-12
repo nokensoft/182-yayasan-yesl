@@ -5,6 +5,7 @@
 @php
     $sections = [
         ['id' => 'ikhtisar', 'icon' => 'fa-circle-info', 'title' => 'Ikhtisar Sistem'],
+        ['id' => 'statis', 'icon' => 'fa-code', 'title' => 'Halaman & Section Statis'],
         ['id' => 'peran', 'icon' => 'fa-user-shield', 'title' => 'Peran & Hak Akses'],
         ['id' => 'blog', 'icon' => 'fa-newspaper', 'title' => 'Manajemen Blog'],
         ['id' => 'kategori', 'icon' => 'fa-tags', 'title' => 'Kategori'],
@@ -36,12 +37,21 @@
         {{-- Konten dokumentasi --}}
         <div class="max-w-3xl space-y-6 xl:pr-4">
             <div class="bg-gradient-to-br from-primary to-primary-700 text-white rounded-2xl p-6 md:p-8">
-                <p class="text-xs font-bold uppercase tracking-wide text-white/70">Panduan Penggunaan</p>
-                <h2 class="text-2xl md:text-3xl font-extrabold mt-1">Dokumentasi Sistem</h2>
-                <p class="text-white/90 mt-2 text-sm md:text-base">
-                    Panduan penggunaan panel admin {{ config('app.name') }} untuk admin dan operator.
-                    Gunakan navigasi di kanan untuk berpindah antar bagian.
-                </p>
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-wide text-white/70">Panduan Penggunaan</p>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-1">Dokumentasi Sistem</h2>
+                        <p class="text-white/90 mt-2 text-sm md:text-base">
+                            Panduan penggunaan panel admin {{ config('app.name') }} untuk admin dan operator.
+                            Gunakan navigasi di kanan untuk berpindah antar bagian.
+                        </p>
+                    </div>
+                    <button type="button" onclick="window.print()"
+                        class="no-print shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white text-sm font-semibold rounded-xl transition">
+                        <i class="fa-solid fa-print"></i>
+                        <span class="hidden sm:inline">Cetak</span>
+                    </button>
+                </div>
             </div>
 
             {{-- Ikhtisar --}}
@@ -58,6 +68,215 @@
                     <li class="flex gap-2"><i class="fa-solid fa-check text-primary mt-1"></i> Autentikasi peran (admin &amp; operator) tanpa registrasi publik.</li>
                     <li class="flex gap-2"><i class="fa-solid fa-check text-primary mt-1"></i> Tema terang (hijau daun) dan mode gelap.</li>
                 </ul>
+            </section>
+
+            {{-- Halaman & Section Statis --}}
+            <section id="statis" class="scroll-mt-24 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 p-6">
+                <h2 class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-code text-primary"></i> Halaman &amp; Section Statis</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+                    Bagian ini mencatat seluruh konten <strong>statis</strong> situs — teks, angka, foto, dan informasi yang
+                    <strong>tidak</strong> dapat diubah melalui panel admin. Perubahan hanya bisa dilakukan oleh
+                    <strong>web developer</strong> dengan mengedit file Blade yang bersangkutan, kemudian men-deploy ulang.
+                </p>
+
+                {{-- Beranda: Section Hero --}}
+                <div class="mt-6 space-y-4">
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-star text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Hero</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/home.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Judul utama (<em>"Menjaga Ekologi Sahul…"</em>), sub-judul, kalimat deskripsi YESL di bawah hero, serta teks dan tautan dua tombol CTA.
+                            Latar belakang hero (gambar slider) berada di
+                            <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">resources/views/components/hero.blade.php</code>.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-chart-bar text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Statistik Dampak</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/dampak.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Lima kotak statistik <em>"Dampak Kami Hingga 2024"</em>: Wilayah Dampingan (114.941 Ha), Penerima Manfaat (3.843),
+                            Komunitas Adat (9), Donor Strategis (5), dan Tahun Pengalaman (5). Angka, label, ikon, dan tahun laporan semuanya dikodekan di file ini.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-building text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Tentang YESL</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/tentang.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Logo, empat paragraf deskripsi organisasi, akordeon <em>Arti Nama YESL</em>, <em>Filosofi Logo</em>, dan tabel
+                            <em>Status Legalitas Organisasi</em> (NIB, nomor SIUP, akta notaris, KEMENKUMHAM, NPWP, alamat, kontak).
+                            Gambar logo di <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">public/images/logo-yesl.png</code>.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-bullseye text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Visi &amp; Misi</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/visi-misi.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Teks visi (<em>"Terwujudnya bentang alam yang lestari…"</em>), lima poin misi yayasan, serta deskripsi wilayah kerja &amp; kedudukan (Mimika, Papua Tengah).
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-leaf text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Nilai-Nilai Organisasi</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/nilai.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Lima nilai inti: <em>Keberpihakan Masyarakat Adat, Kelestarian Bentang Alam, Kolaboratif, Integritas &amp; Akuntabilitas,</em> dan <em>Pembelajaran &amp; Inovatif</em>.
+                            Setiap nilai memiliki judul dan deskripsi singkat.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-layer-group text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Program Prioritas</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/program.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Empat pilar program (<em>Kajian &amp; Pengelolaan Pengetahuan, Transformasi Ekonomi, Pemberdayaan Masyarakat Adat, Pembiayaan Inovatif</em>)
+                            beserta ikon, deskripsi, dan gambar latar masing-masing.
+                            Gambar ada di <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">public/images/proram-prioritas/</code>.
+                            Halaman detail <em>Program Berjalan</em> (<code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">/program-berjalan</code>) ada di
+                            <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">resources/views/pages/program-berjalan.blade.php</code>.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-circle-question text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Mengapa YESL</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/mengapa.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Lima alasan mengapa memilih YESL: <em>Dipimpin Masyarakat Adat, Berbasis Bentang Alam, Berbasis Bukti, Kolaboratif,</em> dan
+                            <em>Akuntabel &amp; Transparan</em>. Setiap kartu memiliki ikon, judul, deskripsi, dan foto latar.
+                            Foto ada di <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">public/images/mengapa-yesl/</code>.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-users text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Tim YESL</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/tim.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Dua kelompok: <em>Pembina &amp; Pengawas</em> (Netty Bakkara, Maryana J. E. Hamadi) dan <em>Staf</em>
+                            (Rintho G. Maturbongs — Direktur, Prasetyo — Manager Program, Nadhiya Tamrin — Staf Keuangan,
+                            Eka Januarita Kafiar — Fasilitator Lokal). Foto tim ada di <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">public/images/team/</code>.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-hand-holding-heart text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Donasi / Mari Berkontribusi</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/mari-berkontribusi.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Nomor WhatsApp kontak (<code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">62811490000</code>), detail rekening donasi
+                            (BRI a.n. <em>EKOLOGI SAHUL LESTARI</em>, No. Rek. <strong>056101002563303</strong>, Cabang Timika),
+                            teks ajakan donasi, dan instruksi transfer. Perubahan nomor rekening atau nomor WA harus dilakukan di sini.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-handshake text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Mitra Kerja</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/mitra-kerja.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Tujuh logo mitra &amp; donor: BRIN, EcoNusa, Pemkab Mimika, Konservasi Indonesia, Learning Transforms Lives,
+                            Packard Foundation, The Asia Foundation. File logo ada di <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">public/images/patners/</code>.
+                            Untuk menambah/menghapus mitra, edit array <code class="text-xs bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">$mitraKerja</code> di file tersebut.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-rectangle-ad text-primary text-sm"></i>
+                            <span class="font-bold text-sm">CTA (Ajakan Kolaborasi)</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/cta.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Banner besar di akhir beranda: <em>"Siap Berkolaborasi untuk Tata Kelola SDA yang Adil?"</em> beserta
+                            sub-teks dan tombol <em>Hubungi YESL</em>.
+                        </p>
+                    </div>
+
+                    {{-- Navigasi & Footer --}}
+                    <div class="rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 px-4 py-3 border-b border-slate-200 dark:border-white/10">
+                            <i class="fa-solid fa-bars text-primary text-sm"></i>
+                            <span class="font-bold text-sm">Navigasi &amp; Footer</span>
+                            <code class="ml-auto text-[11px] bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded text-slate-500">resources/views/partials/nav.blade.php &amp; footer.blade.php</code>
+                        </div>
+                        <p class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                            Menu navigasi atas (logo, tautan, tombol toggle dark-mode) dan footer (alamat kantor, peta Google Maps,
+                            tautan media sosial, badge NGO Source) dikodekan di kedua file ini.
+                        </p>
+                    </div>
+
+                </div>
+
+                {{-- Halaman Statis Tambahan --}}
+                <h3 class="font-bold text-base mt-8 mb-4 flex items-center gap-2"><i class="fa-solid fa-file text-primary text-sm"></i> Halaman Statis Lainnya</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 dark:bg-slate-800/60 text-left">
+                                <th class="px-4 py-2.5 font-semibold text-slate-700 dark:text-slate-300 rounded-tl-lg border border-slate-200 dark:border-white/10">Halaman</th>
+                                <th class="px-4 py-2.5 font-semibold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">URL</th>
+                                <th class="px-4 py-2.5 font-semibold text-slate-700 dark:text-slate-300 rounded-tr-lg border border-slate-200 dark:border-white/10">File Blade</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-600 dark:text-slate-300">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-white/5">
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10 font-medium">Kebijakan Privasi</td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">/kebijakan-privasi</code></td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">resources/views/pages/privacy.blade.php</code></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-white/5">
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10 font-medium">FAQ</td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">/faq</code></td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">resources/views/pages/faq.blade.php</code></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-white/5">
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10 font-medium">Program Berjalan</td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">/program-berjalan</code></td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">resources/views/pages/program-berjalan.blade.php</code></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-white/5">
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10 font-medium">Peta Situs</td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">/peta-situs</code></td>
+                                <td class="px-4 py-2.5 border border-slate-200 dark:border-white/10"><code class="text-xs">resources/views/pages/sitemap.blade.php</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="mt-5 text-sm text-slate-500 dark:text-slate-400 flex gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 shrink-0"></i>
+                    Semua perubahan di atas memerlukan akses ke kode sumber. Hubungi web developer untuk pembaruan konten statis.
+                </p>
             </section>
 
             {{-- Peran & Hak Akses --}}
@@ -97,6 +316,8 @@
                     <li>Atur <strong>status</strong> (draf/terbit) dan <strong>jadwal publikasi</strong> bila diperlukan.</li>
                     <li>Lengkapi kolom <strong>SEO</strong> (meta) agar artikel optimal di mesin pencari.</li>
                     <li>Artikel yang dihapus masuk ke <strong>Sampah</strong> dan dapat dipulihkan atau dihapus permanen.</li>
+                    <li>Fitur <strong>Cari artikel</strong> dengan kata kunci terkait</li>
+                    <li>Tersedia <strong>Filter Kategori atau Status</strong> untuk menampilkan data sesuai pengelompokan data</li>
                 </ol>
             </section>
 
@@ -120,6 +341,8 @@
                     <li>Unggah <strong>banyak foto</strong> sekaligus ke dalam album.</li>
                     <li>Hapus foto individual bila diperlukan langsung dari halaman album.</li>
                     <li>Album yang dihapus juga masuk ke <strong>Sampah</strong> dan dapat dipulihkan.</li>
+                    <li>Fitur <strong>Cari album</strong> dengan kata kunci terkait</li>
+                    <li>Tersedia <strong>Filter Kategori atau Status</strong> untuk menampilkan data sesuai pengelompokan data</li>
                 </ol>
             </section>
 
@@ -127,7 +350,7 @@
             <section id="media" class="scroll-mt-24 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 p-6">
                 <h2 class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-photo-film text-primary"></i> Media &amp; Editor</h2>
                 <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
-                    Editor artikel menggunakan <strong>TinyMCE</strong> (self-hosted, tanpa API key). Anda dapat
+                    Editor artikel menggunakan <strong>TinyMCE</strong>. Anda dapat
                     mengunggah gambar langsung dari dalam editor; berkas akan disimpan di penyimpanan aplikasi dan
                     otomatis disisipkan ke konten.
                 </p>
@@ -179,7 +402,7 @@
         </div>
 
         {{-- Navigasi mengambang (kanan) untuk section dokumentasi --}}
-        <aside class="hidden xl:block fixed right-6 top-24 z-20 w-56">
+        <aside class="docs-floating-nav hidden xl:block fixed right-6 top-24 z-20 w-56">
             <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur rounded-2xl border border-slate-200 dark:border-white/10 p-3 shadow-lg">
                 <p class="px-3 pb-2 text-[11px] font-bold uppercase tracking-wide text-slate-400">Di halaman ini</p>
                 <nav class="space-y-0.5">
@@ -197,3 +420,48 @@
         </aside>
     </div>
 @endsection
+
+@push('scripts')
+<style>
+@media print {
+    /* Sembunyikan chrome dashboard: sidebar, topbar, footer */
+    body > aside,
+    body > div > header,
+    body > div > footer,
+    /* Sembunyikan navigasi mengambang docs & tombol cetak */
+    .docs-floating-nav,
+    .no-print {
+        display: none !important;
+    }
+
+    /* Hapus margin sidebar agar konten full-width */
+    .md\:ml-64 {
+        margin-left: 0 !important;
+    }
+
+    /* Hapus padding main saat cetak */
+    body > div > main {
+        padding: 0 !important;
+    }
+
+    /* Pastikan background putih & teks gelap */
+    html, body {
+        background-color: #fff !important;
+        color: #1e293b !important;
+    }
+
+    /* Hindari section terpotong di tengah halaman */
+    section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Ukuran & margin kertas */
+    @page {
+        size: A4;
+        margin: 1.5cm 2cm;
+    }
+}
+</style>
+@endpush
