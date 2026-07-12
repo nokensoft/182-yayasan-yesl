@@ -12,11 +12,6 @@
 
             {{-- KOLOM KIRI: LOGO & INFORMASI DETIL (Arti nama, Logo, Program Kerja) --}}
             <div class="space-y-6">
-                {{-- Box Logo --}}
-                <div class="relative bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-white/10 p-10 md:p-16 flex items-center justify-center overflow-hidden">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-                    <img src="{{ asset('images/logo-yesl.png') }}" alt="Logo Yayasan Ekologi Sahul Lestari (YESL)" class="relative w-full max-w-xs h-auto object-contain" loading="lazy">
-                </div>
 
                 @php
                     $programKerja = [
@@ -42,7 +37,7 @@
                                 <p><strong>Sahul</strong> merujuk pada landas kontinen yang menghubungkan Papua dan Australia, melambangkan ruang geografis yang kaya.  </p>
                                 <p><strong>Lestari</strong> menegaskan komitmen untuk menjaga segala kebaikan ini tetap bertahan, kekal, dan tidak berubah demi masa depan. </p>
                                 <p>
-                                    <img src="{{ asset('images/map-ekologi-sahul-lestari.png') }}" />
+                                    <img src="{{ asset('images/map-ekologi-sahul-lestari.png') }}" alt="Peta Ekologi Sahul" />
                                 </p>
                             </div>
                         </div>
@@ -58,6 +53,9 @@
                         </button>
                         <div x-show="open === 2" x-cloak x-transition class="px-4 pb-4">
                             <div class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed space-y-3">
+                                <p>
+                                    <img src="{{ asset('images/logo-yesl.png') }}" />
+                                </p>
                                 <p><strong>Dasar Warna Putih:</strong> Mencerminkan kasih yang tulus dan saling membangun kepercayaan untuk bekerja sama dalam membangun tanah Papua.</p>
                                 <p><strong>Warna Hijau:</strong> Memberikan makna keberlanjutan tanah dan Manusia Papua secara mandiri dan berkeadilan.</p>
                                 <p><strong>Gambar Pulau Papua & Corak Daun:</strong> Menggambarkan tingginya keanekaragaman bentang alam serta keanekaragaman hayati dan keberagaman sosial budaya wilayah adat yang ada di Tanah Papua.</p>
