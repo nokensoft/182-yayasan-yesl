@@ -6,7 +6,7 @@
             {{-- Judul Besar Section --}}
             <div class="md:col-span-2 text-center max-w-3xl mx-auto mb-4">
                 <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 dark:bg-primary-500/15 dark:text-primary-300 rounded-full text-xs font-bold tracking-wide uppercase">Profil Organisasi</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold mt-4">Tentang <span class="text-primary">YESL</span></h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-4">Tentang <span class="text-primary">YESL (Yayasan Ekologi Sahul Lestari)</span></h2>
                 <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Mengenal lebih dekat jati diri, makna nama dan logo, serta komitmen YESL dalam mendampingi masyarakat adat di Tanah Papua.</p>
             </div>
 

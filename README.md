@@ -47,6 +47,21 @@ Dibangun dengan **Laravel 12** sebagai CMS ringan: beranda *one‑page* statis y
 - **Ikon & font**: Font Awesome 6, Google Fonts (Plus Jakarta Sans)
 - **Autentikasi**: session bawaan Laravel + middleware peran kustom (`role:admin`)
 
+### Penjelasan Umum Teknologi
+
+Ringkasan peran masing‑masing teknologi dalam sistem, ditujukan bagi pembaca non‑teknis maupun developer baru:
+
+- **PHP 8.2** — Bahasa pemrograman sisi server (backend) yang menjalankan seluruh logika aplikasi: memproses permintaan, mengambil data dari database, dan menghasilkan halaman. Versi 8.2 dipilih agar kompatibel dengan Laravel 12.
+- **Laravel 12** — *Framework* PHP yang menjadi kerangka utama aplikasi. Menyediakan struktur rapi (routing, controller, model, middleware), keamanan bawaan (proteksi CSRF, hashing kata sandi), migrasi database, dan sistem autentikasi. Berperan sebagai *CMS* ringan yang mengatur konten dan peran pengguna.
+- **SQLite** — Basis data berbasis satu berkas tunggal, ringan dan tanpa server terpisah, cocok untuk situs profil berskala kecil–menengah. Karena Laravel memakai lapisan abstraksi (Eloquent), database dapat dipindah ke **MySQL/PostgreSQL** tanpa mengubah banyak kode saat kebutuhan bertambah.
+- **Blade** — Mesin *templating* bawaan Laravel untuk menyusun tampilan HTML. Dipakai untuk konten statis (hero, tentang, visi‑misi, dll.) yang hanya dapat diubah lewat kode.
+- **Tailwind CSS 4** — *Framework* CSS berbasis *utility class* untuk menata desain langsung di markup. Mempercepat pembuatan tampilan responsif dan konsisten; kelas tak terpakai otomatis dipangkas (*purge*) saat build.
+- **Alpine.js 3** — Pustaka JavaScript ringan untuk interaktivitas di sisi klien (toggle menu, akordeon, lightbox, pemuatan data Blog/Galeri dari API secara dinamis) tanpa perlu framework berat.
+- **Vite 7** — Alat *build* dan *bundler* aset (CSS & JS). Menyediakan *hot reload* saat pengembangan serta *bundle* terminifikasi dan teroptimasi untuk produksi.
+- **TinyMCE 8** — Editor teks kaya (*WYSIWYG*) yang di‑*host* sendiri (tanpa API key) untuk menulis dan memformat artikel Blog, termasuk mengunggah gambar.
+- **Font Awesome 6 & Google Fonts** — Penyedia ikon dan tipografi (Plus Jakarta Sans) untuk memperkuat identitas visual situs.
+- **Autentikasi Laravel + middleware peran** — Sistem masuk (login) berbasis *session* untuk membedakan hak akses. *Middleware* peran kustom (`role:admin`) membatasi menu/aksi tertentu hanya untuk admin.
+
 ## Persyaratan
 
 - PHP >= 8.2 dengan ekstensi umum Laravel (mbstring, openssl, pdo_sqlite, dll.)
@@ -94,6 +109,64 @@ Dibuat oleh seeder — **segera ganti kata sandi setelah login pertama**.
 
 - **Admin** — email: `admin@yesl.or.id` · kata sandi: `password`
 - **Operator** — email: `operator@yesl.or.id` · kata sandi: `password`
+
+## Klasifikasi SDM Pengguna Sistem
+
+Berikut klasifikasi Sumber Daya Manusia (SDM) yang berinteraksi dengan sistem beserta kemampuan
+(hak akses) dan batasannya. Secara teknis, sistem hanya mengenal **dua peran login** (`admin` dan
+`operator`), sedangkan **Web Developer** dan **Pengunjung** berada di luar mekanisme peran aplikasi
+(masing‑masing bekerja di level kode dan di sisi publik).
+
+### 1. Web Developer
+**Peran:** Pengembang/pemelihara aplikasi (mis. tim Nokensoft.com).
+**Kriteria & kemampuan:**
+- Menguasai PHP/Laravel, Blade, Tailwind CSS, Alpine.js, Vite, dan Git.
+- Memiliki akses ke *source code*, server, dan basis data.
+- Mengubah **konten statis** yang dikodekan di Blade (hero, tentang, visi‑misi, program, tim, mitra, footer, dll. — lihat tabel "Konten Statis").
+- Menambah/mengubah fitur, membuat migrasi database, mengelola peran & *middleware*, serta melakukan *deploy*.
+
+**Batasan:**
+- Perubahan konten statis wajib melalui *coding* dan *deploy ulang*; tidak dapat dilakukan dari dashboard.
+- Bukan peran login aplikasi sehari‑hari; sebaiknya tidak dipakai untuk operasional konten rutin.
+
+### 2. Admin
+**Peran:** Pengelola tertinggi di dashboard (`role: admin`).
+**Kriteria & kemampuan:**
+- Cukup memahami penggunaan dashboard CMS (tidak perlu kemampuan coding).
+- **Akses penuh** ke seluruh modul dashboard.
+- **Manajemen pengguna** (`/dashboard/users`): membuat, mengubah, mereset kata sandi, dan menghapus akun **operator**.
+- CRUD **Blog/Artikel**, **Kategori**, dan **Album/Galeri** (termasuk unggah & hapus foto).
+- Mengubah data akun & kata sandi sendiri, serta melihat ringkasan statistik konten.
+
+**Batasan:**
+- Tidak dapat mengubah konten statis Blade tanpa bantuan Web Developer.
+- Tidak ada registrasi publik; akun dibuat oleh seeder atau admin lain.
+
+### 3. Operator (mencakup peran "Penulis")
+**Peran:** Pengelola konten harian di dashboard (`role: operator`).
+**Kriteria & kemampuan:**
+- Memahami penggunaan dashboard dan editor TinyMCE (tidak perlu coding).
+- CRUD **Blog/Artikel** (menulis, memformat, unggah gambar, pilih multi‑kategori, atur sampul, status draf/terbit, jadwal publikasi, dan kolom SEO).
+- CRUD **Kategori** dan **Album/Galeri**.
+- Mengubah data akun & kata sandi sendiri.
+- Fungsi "penulis/editor konten" pada sistem ini diwakili oleh peran **operator**.
+
+**Batasan:**
+- **Tidak** dapat mengakses **Manajemen Pengguna** (`/dashboard/users`) — menu khusus admin (dibatasi `middleware role:admin`).
+- Tidak dapat mengubah konten statis Blade.
+
+### 4. Pengunjung / Visitor (Publik)
+**Peran:** Pengguna umum situs tanpa login.
+**Kriteria & kemampuan:**
+- Tidak memerlukan akun atau kemampuan teknis apa pun.
+- Menjelajah seluruh halaman publik: beranda, Blog & detail artikel, Galeri & detail album, halaman statis (FAQ, Kebijakan Privasi, Peta Situs).
+- Menggunakan pencarian & filter (kata kunci, A–Z, rentang tanggal, kategori), *lightbox* galeri, toggle mode gelap, serta menghubungi/donasi via WhatsApp & informasi rekening.
+
+**Batasan:**
+- **Hanya membaca** (read‑only); tidak dapat membuat atau mengubah konten apa pun.
+- Tidak memiliki akses ke dashboard (`/dashboard`).
+
+> **Ringkasan hak akses:** Web Developer → seluruh kode & konten statis · Admin → seluruh modul CMS + manajemen pengguna · Operator → konten Blog, Kategori, Album/Galeri (tanpa manajemen pengguna) · Pengunjung → akses baca konten publik.
 
 ## Peta Rute Utama
 
