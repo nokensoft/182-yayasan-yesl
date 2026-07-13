@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // Akun default (ganti kata sandi setelah login pertama).
         $admin = User::updateOrCreate(
-            ['email' => 'admin@yesl.or.id'],
+            ['email' => 'admin@sahullestari.org'],
             ['name' => 'Administrator YESL', 'password' => 'password', 'role' => User::ROLE_ADMIN],
         );
 
         $operator = User::updateOrCreate(
-            ['email' => 'operator@yesl.or.id'],
+            ['email' => 'operator@sahullestari.org'],
             ['name' => 'Operator Konten', 'password' => 'password', 'role' => User::ROLE_OPERATOR],
         );
 

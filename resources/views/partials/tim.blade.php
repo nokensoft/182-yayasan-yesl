@@ -5,17 +5,17 @@
                 {
                     label: 'Pembina & Pengawas',
                     members: [
-                        { name: 'Netty Bakkara', role: 'Pembina', photo: '{{ asset('images/team/netty.jpg') }}', linkedin: '#', email: 'netty@mail.com' },
-                        { name: 'Maryana J. E. Hamadi', role: 'Pengawas', photo: '{{ asset('images/team/maryana.jpg') }}', linkedin: '#', email: '#' },
+                        { name: 'Netty Bakkara', role: 'Pembina', photo: '{{ asset('images/team/netty.jpg') }}', linkedin: '', email: '' },
+                        { name: 'Maryana J. E. Hamadi', role: 'Pengawas', photo: '{{ asset('images/team/maryana.jpg') }}', linkedin: '', email: '' },
                     ],
                 },
                 {
                     label: 'Staf',
                     members: [
-                        { name: 'Rintho G. Maturbongs', role: 'Direktur', photo: '{{ asset('images/team/rintho.jpg') }}', linkedin: '#', email: '#' },
-                        { name: 'Prasetyo', role: 'Manager Program', photo: '{{ asset('images/team/prasetyo.jpg') }}', linkedin: '#', email: '#' },
-                        { name: 'Nadhiya Tamrin', role: 'Staf Keuangan', photo: '{{ asset('images/team/nadhiya.jpg') }}', linkedin: '#', email: '#' },
-                        { name: 'Eka Januarita Kafiar', role: 'Fasilitator Lokal', photo: '{{ asset('images/team/januarita.jpg') }}', linkedin: '#', email: '#' },
+                        { name: 'Rintho G. Maturbongs', role: 'Direktur', photo: '{{ asset('images/team/rintho.jpg') }}', linkedin: '', email: '' },
+                        { name: 'Prasetyo', role: 'Manager Program', photo: '{{ asset('images/team/prasetyo.jpg') }}', linkedin: '', email: '' },
+                        { name: 'Nadhiya Tamrin', role: 'Staf Keuangan', photo: '{{ asset('images/team/nadhiya.jpg') }}', linkedin: '', email: '' },
+                        { name: 'Eka Januarita Kafiar', role: 'Fasilitator Lokal', photo: '{{ asset('images/team/januarita.jpg') }}', linkedin: '', email: '' },
                     ],
                 },
             ],
