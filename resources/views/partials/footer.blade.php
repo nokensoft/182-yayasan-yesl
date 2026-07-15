@@ -42,15 +42,36 @@
             {{-- Kolom Kanan: Kantor --}}
             <div>
                 <h5 class="font-bold mb-5 uppercase tracking-widest text-xs text-slate-400">Kantor</h5>
+                
                 <div class="text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed space-y-2">
+                    <!-- Alamat -->
                     <p class="flex items-start gap-2">
                         <i class="fa-solid fa-location-dot text-primary mt-1"></i>
-                        <span>Jln. Patimura Ujung, Kelurahan Pasar Sentral<br>Distrik Mimika Baru, Kabupaten Mimika,<br>Papua Tengah</span>
+                        <span>
+                            <strong>Kantor Pusat Yayasan Ekologi Sahul Lestari</strong><br>
+                            Jalan Kartini Ujung, Kelurahan Perintis<br>
+                            Distrik Mimika Baru (9910), Kabupaten Mimika,<br>
+                            Papua Tengah
+                        </span>
                     </p>
+                    
+                    <!-- WhatsApp Direktur -->
                     <p class="flex items-center gap-2">
-                        <i class="fa-solid fa-phone text-primary"></i>
-                        <a href="tel:+6282199778738" class="hover:text-primary transition">+62 821-9977-8738</a>
+                        <i class="fa-brands fa-whatsapp text-primary"></i>
+                        <span>Direktur: 
+                            <a href="https://wa.me/6281340932910" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition">+62 813-4093-2910</a>
+                        </span>
                     </p>
+
+                    <!-- WhatsApp Program Manager -->
+                    <p class="flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-primary"></i>
+                        <span>Program Manager: 
+                            <a href="https://wa.me/6282238682030" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition">+62 822-3868-2030</a>
+                        </span>
+                    </p>
+                    
+                    <!-- Email -->
                     <p class="flex items-center gap-2">
                         <i class="fa-solid fa-envelope text-primary"></i>
                         <a href="mailto:ekologisahullestari@gmail.com" class="hover:text-primary transition">ekologisahullestari@gmail.com</a>
