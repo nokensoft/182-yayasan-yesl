@@ -10,6 +10,7 @@ use App\Support\Slug;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AlbumController extends Controller
@@ -135,8 +136,10 @@ class AlbumController extends Controller
 
         $album->description = $data['description'] ?? null;
         $album->status = $data['status'];
-        $album->meta_title = $data['meta_title'] ?? null;
-        $album->meta_description = $data['meta_description'] ?? null;
+
+        // Meta SEO di-generate otomatis dari judul & deskripsi.
+        $album->meta_title = $data['title'];
+        $album->meta_description = Str::limit(trim(strip_tags($data['description'] ?? '')), 160) ?: null;
 
         $published = filled($data['published_at'] ?? null) ? Carbon::parse($data['published_at']) : null;
         if ($data['status'] === 'published') {

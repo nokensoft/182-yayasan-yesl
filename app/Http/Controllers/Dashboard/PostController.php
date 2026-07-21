@@ -10,6 +10,7 @@ use App\Support\Slug;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -134,8 +135,11 @@ class PostController extends Controller
         $post->excerpt = $data['excerpt'] ?? null;
         $post->body = $data['body'] ?? null;
         $post->status = $data['status'];
-        $post->meta_title = $data['meta_title'] ?? null;
-        $post->meta_description = $data['meta_description'] ?? null;
+
+        // Meta SEO di-generate otomatis dari judul & konten.
+        $post->meta_title = $data['title'];
+        $descSource = filled($data['excerpt'] ?? null) ? $data['excerpt'] : ($data['body'] ?? '');
+        $post->meta_description = Str::limit(trim(strip_tags($descSource)), 160) ?: null;
 
         $published = filled($data['published_at'] ?? null) ? Carbon::parse($data['published_at']) : null;
         if ($data['status'] === 'published') {
