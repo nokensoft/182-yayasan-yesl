@@ -141,7 +141,7 @@
 
             {{-- CTA kembali --}}
             <div class="mt-16 text-center">
-                <a href="{{ route('home') }}#program"
+                <a href="{{ route('pages.tentang') }}#program"
                     class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-700 transition shadow-md">
                     <i class="fa-solid fa-arrow-left text-xs"></i> Kembali ke Program Prioritas
                 </a>

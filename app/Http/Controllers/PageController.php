@@ -13,6 +13,11 @@ class PageController extends Controller
         return view('pages.privacy');
     }
 
+    public function tentang(): View
+    {
+        return view('pages.tentang');
+    }
+
     public function faq(): View
     {
         return view('pages.faq');

@@ -29,7 +29,7 @@
             <div>
                 <h5 class="font-bold mb-5 uppercase tracking-widest text-xs text-slate-400">Tautan</h5>
                 <ul class="space-y-3 font-semibold text-sm text-slate-600 dark:text-slate-300">
-                    <li><a href="{{ route('home') }}#tentang" class="hover:text-primary transition">Tentang Kami</a></li>
+                    <li><a href="{{ route('pages.tentang') }}" class="hover:text-primary transition">Tentang Kami</a></li>
                     <li><a href="{{ route('blog.index') }}" class="hover:text-primary transition">Blog & Artikel</a></li>
                     <li><a href="{{ route('gallery.index') }}" class="hover:text-primary transition">Galeri Kegiatan</a></li>
                     <li><a href="{{ route('pages.faq') }}" class="hover:text-primary transition">FAQ</a></li>

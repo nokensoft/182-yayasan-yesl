@@ -32,7 +32,7 @@
             Yayasan Ekologi Sahul Lestari (YESL) hadir di Tanah Papua sejak 2019 untuk melindungi kedaulatan masyarakat adat dalam pengelolaan daratan dan perairan secara berkelanjutan.
         </p>
         <div class="flex flex-wrap gap-4 justify-center">
-            <a href="#tentang" class="px-7 py-3.5 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/25 hover:-translate-y-0.5 transition">Pelajari Lebih Lanjut</a>
+            <a href="{{ route('pages.tentang') }}" class="px-7 py-3.5 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/25 hover:-translate-y-0.5 transition">Pelajari Lebih Lanjut</a>
             <a href="{{ route('blog.index') }}" class="px-7 py-3.5 bg-white/10 text-white border border-white/25 rounded-2xl font-bold hover:bg-white/20 transition flex items-center gap-2 backdrop-blur-sm">
                 <i class="fa-solid fa-newspaper text-primary-300"></i> Baca Blog
             </a>
@@ -40,29 +40,12 @@
     </x-hero>
 
     @include('partials.dampak')
-    
+
     @include('partials.blog')
-
-    @include('partials.tentang')
-
-    @include('partials.visi-misi')
-
-    @include('partials.nilai')
-    
-    @include('partials.program')
 
     @include('partials.galeri')
 
-    @include('partials.mengapa')
-
-    @include('partials.tim')
-
     @include('partials.mari-berkontribusi')
-
-    @include('partials.mitra-kerja')
-    
-    @include('partials.cta')
-    
 
 @endsection
 
