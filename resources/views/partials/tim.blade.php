@@ -16,6 +16,7 @@
                         { name: 'Prasetyo', role: 'Manager Program', photo: '{{ asset('images/team/prasetyo.jpg') }}', linkedin: '', email: '' },
                         { name: 'Nadhiya Tamrin', role: 'Staf Keuangan', photo: '{{ asset('images/team/nadhiya.jpg') }}', linkedin: '', email: '' },
                         { name: 'Eka Januarita Kafiar', role: 'Fasilitator Lokal', photo: '{{ asset('images/team/januarita.jpg') }}', linkedin: '', email: '' },
+                        { name: 'Selfi J. Demotekay', role: 'Junior Field Officer', photo: '{{ asset('images/team/selfi.jpg') }}', linkedin: '', email: '' },
                     ],
                 },
             ],
