@@ -43,7 +43,7 @@
         </template>
 
         {{-- Overlay gradien (dipertahankan seperti desain semula) --}}
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-slate-950/10"></div>
         <div class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/85 via-white/30 to-transparent"></div>
     </div>
 
