@@ -145,11 +145,11 @@
                 </p>
                     
                 <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
-                    Sejan terbentuk, Yayasan Ekologi Sahul Lestari telah bekerja sama dengan komunitas dan kelembagaan adat di wilayah Tanah Papua sebagai pemberi mandat dalam pendokumentasian bersama Profil Masyarakat Adat, baik sejarah, wilayah pengelolaan sumber daya alam dalam konteks Sumber penghidupan sehari-hari maupun sebagai identitas jati diri. Pendokumentian bersama terkait struktur dan kelembagaan adat, hukum adat, harta kekayaan adat, dan keanekaragaman hayati yang penting bagi pelestarian nilai budaya setempat. 
+                    Sejak terbentuk, Yayasan Ekologi Sahul Lestari telah bekerja sama dengan komunitas dan kelembagaan adat di wilayah Tanah Papua sebagai pemberi mandat dalam pendokumentasian bersama Profil Masyarakat Adat, baik sejarah, wilayah pengelolaan sumber daya alam dalam konteks Sumber penghidupan sehari-hari maupun sebagai identitas jati diri. Pendokumentian bersama terkait struktur dan kelembagaan adat, hukum adat, harta kekayaan adat, dan keanekaragaman hayati yang penting bagi pelestarian nilai budaya setempat. 
                 </p>
 
                 <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
-                    Hasil pendukumentasian Profil Masyarakat Adat ini kemudian diadvokasi menjadi arahan kebijakan regulasi, perencanaan dan program kegiatan bersama Masyarakat adat sebagai pemegang mandat dengan Dukungan kolaborasi mitra pembangunan baik pemerintah pusat dan daerah, mitra donor, mitra cso dan sektor swasta.
+                    Hasil pendokumentasian Profil Masyarakat Adat ini kemudian diadvokasi menjadi arahan kebijakan regulasi, perencanaan dan program kegiatan bersama Masyarakat adat sebagai pemegang mandat dengan Dukungan kolaborasi mitra pembangunan baik pemerintah pusat dan daerah, mitra donor, mitra cso dan sektor swasta.
                 </p>
                     
                 <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed text-justify">
